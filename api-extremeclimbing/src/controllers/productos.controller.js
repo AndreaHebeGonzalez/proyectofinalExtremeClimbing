@@ -306,6 +306,13 @@ const busquedaAleatoria = async (req, res) => {
     }
 }
 
+//devolver categorias provisorio:
+
+const categories = (req, res) => {
+    const categorias = ['camping', 'montañismo', 'escalada'];
+    res.json(categorias);
+}
+
 module.exports = {
     buscarTodos,
     agregar,
@@ -314,6 +321,7 @@ module.exports = {
     borrarProducto,
     buscarPorCategoria,
     busquedaAleatoria,
+    categories,
 }
 
 

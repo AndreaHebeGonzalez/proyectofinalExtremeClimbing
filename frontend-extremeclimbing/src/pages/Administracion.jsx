@@ -7,7 +7,7 @@ const Administracion = () => {
     return (
         <section className='contenedor-admin'>
             <div className="titulo">
-                <h2 class="h2forms">Área administrador</h2>
+                <h2 className="h2forms">Área administrador</h2>
                 <div className="borde"></div>    
             </div>
 

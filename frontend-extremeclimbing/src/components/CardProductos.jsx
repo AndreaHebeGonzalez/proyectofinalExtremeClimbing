@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const CardProductos = ({ producto }) => {    
-    
+const CardProductos = ({ producto, urlImagen }) => {  
+
     const urlbase = "http://localhost:8000/";
     const urlCompleta= `${urlbase}${producto.imagenes[0]}`;
+
     
     return (
         <article key= {producto.id} className="producto" style={{maxWidth: "250px"}}>

@@ -80,6 +80,11 @@ productosRouter.get(
     productosController.busquedaAleatoria
 );
 
+productosRouter.get(
+    "/categorias/categorias",
+    productosController.categories
+);
+
 productosRouter.put(
     "/:id",
     [
