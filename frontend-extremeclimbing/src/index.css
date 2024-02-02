@@ -1,0 +1,185 @@
+/* Importo fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+
+/*--------------------------------------------------------------
+/** 1. VARIABLES
+--------------------------------------------------------------*/
+
+/* ======Variables para colores====== */
+
+:root {
+    --color-uno    : #fff;
+    --color-dos      : #000;
+    --color-body    : #082011;
+    --color-destacable  : #F69709 ;
+    --color-destacable-dos  : #D58206; /* Boton de portada, boton de arrepentimiento en footer, borde superior del footer, bordes inferiores en imputs, boton agregar al carrito y botonseguir comprando*/
+    --color-fuente-secundaria      : #2E2D2D; /* copyright en footer */
+    --color-footer-primario : #0A2F35;
+    --color-footer-secundario: #808080; /* copyright en footer */
+}
+
+/* ======Variables para fuentes====== */
+
+:root {
+    --fuente-primaria    : 'Kanit', sans-serif;  /* Titulos, banners, lebels, menu, titulos en footer */
+    --fuente-parrafos  : 'Ubuntu', sans-serif; /* parrafos */
+}
+
+/*--------------------------------------------------------------
+/** 2. Configuraciones generales
+--------------------------------------------------------------*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html { /* definiendo un comportamiento global para toda la página. Incluye configuración de un color de fondo y una fuente predeterminada que se aplicará en todo el documento. */
+    font-size: 16px;
+    background-color: var(--color-uno);
+    color: var(--color-uno);
+    font-family: var(--fuente-parrafos);
+}
+
+body {
+    background-color: var(--color-uno);
+    font-family: var(--fuente-parrafos);
+    position: relative;
+    
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-style: normal;
+    font-weight: 300;
+    font-family: var(--fuente-primaria); 
+    color: var(--color-dos);
+}
+
+h1 {
+    font-size: clamp(2.4rem, 4vw, 6rem);
+}
+
+h2 {
+    font-size: clamp(1.3rem, 3.5vw, 3.8rem);
+}
+
+h3 {
+    font-size: clamp(1rem, 3.4vw , 3.8rem); 
+}
+
+h4 {
+    font-size: clamp(0.9rem, 1.4vw, 2.5rem);
+}
+
+h5 {
+    font-size: clamp(0.9rem, 1.2vw, 2.1rem);
+}
+
+p {
+    font-family: var(--fuente-parrafos); 
+    font-size: clamp(0.9rem, 1.2vw, 1.6rem); 
+}
+
+a {
+    
+    font-size: clamp(0.9rem, 1.2vw, 1.6rem);
+    
+}
+
+.h2forms {
+    font-size: clamp(1.5rem, 2.5vw, 3.5rem);
+}
+
+@media (min-width: 1024px) {
+    h2 {
+        font-size: clamp(1.3rem, 3.5vw, 4rem);
+    } 
+}
+
+@media (min-width: 1280px) {
+    h2 {
+        font-size: clamp(1.3rem, 3vw, 4rem);
+    }  
+}
+
+@media (min-width: 1440px) {
+    h2 {
+        font-size: clamp(1.3rem, 2.5vw, 3.8rem);
+    }  
+
+    h3 {
+        font-size: clamp(1rem, 2vw, 3.5rem); 
+    }
+}
+
+
+
+/*--------------------------------------------------------------
+/** 2. Configuraciones básicas
+--------------------------------------------------------------*/
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a, 
+li {
+    color: var(--color-dos);
+    font-family: var(--fuente-primaria);
+    font-weight: 300;
+}
+
+
+a,
+a:focus,
+a:hover {
+    text-decoration: none;
+    outline: 0;
+}
+
+/*Medidas para íconos*/
+.iconos-respons {
+    width: clamp(1.5625rem, 1.2vw, 2.5rem);
+    height: auto;
+}
+
+.icono {
+    width: 24px;
+    height: auto;
+}
+
+.icono2 {
+    width: 30px;
+    height: auto;
+}
+/*FIN Medidas para íconos*/
+
+input, button {
+    outline: none;
+}
+
+.btn-1 {
+    border: none;
+    text-align: center;
+    border-radius: 5px 0 5px 0;
+    width: 25%;
+    height: 12%;
+    background-color: var(--color-destacable-dos);
+    color: var(--color-uno);
+    font-size: clamp(0.8125rem, 1.2vw, 2rem);
+    cursor: pointer;
+}
+
+header {
+    background-color: var(--color-uno);
+}
+

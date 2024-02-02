@@ -1,0 +1,12 @@
+.margin {
+    margin: 5vw 1vw !important;
+}
+
+.contenedor {
+    position: relative;
+}
+
+.cierre-carrito {
+    position:absolute;
+    
+}

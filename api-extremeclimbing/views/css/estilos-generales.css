@@ -1,0 +1,63 @@
+/*--------------------------------------------------------------
+/** 1. VARIABLES
+--------------------------------------------------------------*/
+
+:root {
+    --color-uno    : #fff;
+    --color-dos      : #000;
+    --color-body    : #082011;
+    --color-destacable  : #F69709 ;
+    --color-destacable-dos  : #D58206; /* Boton de portada, boton de arrepentimiento en footer, borde superior del footer, bordes inferiores en imputs, boton agregar al carrito y botonseguir comprando*/
+    --color-fuente-secundaria      : #2E2D2D; /* copyright en footer */
+    --color-footer-primario : #0A2F35;
+    --color-footer-secundario: #808080; /* copyright en footer */
+}
+
+/* ======Variables para fuentes====== */
+
+:root {
+    --fuente-primaria    : 'Kanit', sans-serif;  /* Titulos, banners, lebels, menu, titulos en footer */
+    --fuente-parrafos  : 'Ubuntu', sans-serif; /* parrafos */
+}
+
+/*--------------------------------------------------------------
+/** 2. Configuraciones generales
+--------------------------------------------------------------*/
+
+body {
+    background-color: var(--color-uno);
+}
+
+main {
+    background-color: var(--color-uno) ;
+}
+
+main h3,
+main h4,
+main p,
+li {
+    color: var(--color-dos);
+}
+
+header {
+    background-color: var(--color-uno);
+    padding-bottom: 25px; /*Sobreescribe lo definido en estilos.css*/
+}
+
+.iconos-respons {
+    width: clamp(14px, 1.2vw, 50px);
+    height: auto;
+}
+
+.flexbox-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+@media (min-width: 1200px) {
+    header {
+        background-color: var(--color-uno);
+    }
+    
+}

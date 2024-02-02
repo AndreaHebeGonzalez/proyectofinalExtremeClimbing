@@ -1,0 +1,54 @@
+.contenedor-carrusel {
+    width: 98vw;
+    overflow: hidden;
+    padding: 25px 0 25px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.carrusel {
+    white-space: nowrap;
+    animation: desplazamiento 30s linear infinite;
+}
+
+.contenedor-carrusel:hover .carrusel {
+    animation-play-state: paused;
+}
+
+.carrusel img {
+    width: 18vw;
+    height: auto;
+    margin: 0 2vw;
+}
+
+@keyframes desplazamiento {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%); 
+    }
+}
+
+
+@media (min-width: 768px) {
+
+
+    .carrusel img {
+        width: 14vw;
+        height: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .contenedor-carrusel {
+        padding-top: 70px;
+    }
+
+    .carrusel img {
+        width: 10vw;
+        height: auto;
+    }
+}

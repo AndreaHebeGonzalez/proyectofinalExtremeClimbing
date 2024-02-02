@@ -1,0 +1,256 @@
+/* ========Seccion productos destacados======================== */
+
+    /* Título--------->*/
+
+    .titulo {
+        display: inline-flex; /*Para que el contenedor titulo abarque el ancho de su contenido y el .borde se adapte en proporcion a su tamaño*/
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1.5rem;  
+    }
+    
+    .titulo h2 {    
+        margin-bottom: 0.2rem;
+        
+    }
+    
+    .estiloTitulo { /*Estilo del span */
+        color: var(--color-destacable);
+    }
+    
+    .borde {
+        border-top: 1px solid var(--color-footer-secundario);
+        height: 1px;
+        margin: 10px auto 0;
+        position: relative;
+        width: 60%;
+        padding-bottom: 25px;
+    }
+    
+    .borde:before {
+        content: "";
+        height: 5px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 2px;
+        width: 45%;
+        background-color: var(--color-destacable);
+    }
+    
+        /*Fin Título--------->*/
+    
+    /* ========Seccion productos destacados======================== */
+    
+    /*Articulos productos destacados--------->*/
+    
+    .carrusel-deslizante {
+        display: inline-block;
+        margin: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 25px 0;
+    }
+    
+    .contenedor-general-carrusel { /*Con javaScript hago que el alto de este contenedor se adapte al alto del contenedor de los articulos*/
+        width: 100%;
+        position: relative;
+        margin: 2rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+    }
+    
+    #contenedor-productos-destacados { /* Contenedor padre de todos los articulos corresponde a la sección*/
+        display: flex;
+        flex-flow: row nowrap; /*Evito que se pasen a una segunda linea los articulos*/
+        position:absolute;
+        left: 0;
+        top: 50;
+        width: 1000%; /*Establezco este ancho para que el articulo visible en pantallas chicas ocupe el 100% del ancho de su contenedor padre y se ubique centralmente, se logra porque son 7 articulos*/
+        justify-content: center;
+    }
+    
+    .contenedor-producto { /*A este contenedor le aplico la propiedad order para cambiar el orden de visualizacion*/
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .producto { /* Este es el articulo y abarca 70% de su contenedor para valores menores a 768px, cuando aparecen en direccion columna*/
+        text-align: center; 
+        background-color: var(--color-uno);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+        border-radius: 3%;
+        width: 55%;
+        min-width: 215px; /* Coloco un limite inferior al ancho de este contenedor en la medida que crece el tamaño de pantalla hasta 767px*/ 
+        height: auto;
+        transition: transform 0.5s;
+    }
+
+    .producto h4 {
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        white-space: nowrap;
+    }
+    
+    .row-img-iconos { /*Primer fila dentro del <articles>*/
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.3rem;
+        width: 100%; /*Este contenedor abarcará el 100% de su padre directo <articles>"*/
+    }
+    
+    .row-img-iconos .articulo { /*Imagen central del <articles>*/
+        width: calc(100% - 50px); /*Fijo la proporcion de crecimiento , evito el desborde en su contenedor padre, y al mismo tiempo hago que el tamaño de la imagen crezca con el tamaño de pantalla, ya que su contenedor padre tiene un ancho del 100% (.row-img-iconos), y su abuelo del 70% (.producto), el limite del crecimiento se impondrá en el max-width de este ultimo (400px)*/
+    }
+    
+    #contenedor-productos-destacados .row-img-iconos > img:nth-child(1),
+    #contenedor-productos-destacados .row-img-iconos > img:nth-child(3) {
+        align-self: start; /*Ubico los iconos de este contenedor en el extremo superior*/
+    }
+    
+    .valoracion {
+        padding-bottom: 0.2em;
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .producto .valoracion > img {
+        width: 15px;
+        height: auto;
+    }
+    
+    .producto .precio {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 0.5em;
+        align-items: center;
+        padding-bottom: 0.5em;
+    }
+    
+    #contenedor-productos-destacados .producto h4,
+    #contenedor-productos-destacados .producto h5 {
+        color: var(--color-dos);
+        padding-bottom: 0.3rem;
+    }
+    
+    .btn-2 {
+        font-size: clamp(0.8125em, 1.2vw, 2em);
+        border: none;
+        border-radius: 3%;
+        background-color: #000;
+        color: var(--color-uno);
+        padding: 5px 20px;
+        cursor: pointer;
+    }
+    
+    .btn-2:hover {
+        background-color: transparent;
+        border: #000 1px solid;
+        color: #000;
+    }
+    
+    .flecha-izquierda,
+    .flecha-derecha {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        text-align: center;
+        background: #fff;
+        font-size: clamp(30px, 1.4vw, 60px);
+        border-radius: 50%;
+        position: absolute; /*Con respecto a .contenedor-general-carrusel , el alto de ese contenedor se adapta al alto del contenido por un script*/
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        transition: 0.3s;
+        color: #000;
+        overflow: hidden;
+    }
+    
+    .flecha-izquierda:hover,
+    .flecha-derecha:hover {
+        color: #fff;
+        background: #000;
+        border: 1px solid rgb(0, 0, 0);
+    } 
+    
+    .flecha-izquierda {
+        left: 1rem;
+    }
+    
+    
+    .flecha-derecha {
+        right: 1rem;
+    }
+    
+    
+    @media (min-width: 601px) {
+    
+    
+        #contenedor-productos-destacados {
+            width: 500%; /*Esto es para que entren dos productos centralmente en la pantalla del dispositivo*/
+        }
+
+    }
+    
+    @media (min-width: 901px) {
+    
+        .borde {
+            width:45%;
+        }
+    
+        #contenedor-productos-destacados {
+            width: 333.33%; /*Elijo que a partir de esta medidida y hasta 1200px entren tres productos centralmente*/
+        }
+    
+        #contenedor-productos-destacados .producto:hover {
+            border-bottom: solid 3px var(--color-destacable-dos);
+            transform: translateY(-20px);
+        }
+    
+        #contenedor-productos-destacados .producto .articulo {
+            width: calc(100% - 50px); /*Fijo en un 100% el crecimiento de la imagen central*/
+        }
+    
+        .producto .valoracion > img {
+            width: 18px;
+            height: auto;
+        }        
+    }
+    
+    @media (min-width: 1440px) {
+    
+    
+        #contenedor-productos-destacados {
+            width: 250%; 
+        }
+    
+        
+        #contenedor-productos-destacados .producto .articulo  {
+            width: calc(100% - 50px);
+        }
+    
+        .producto .valoracion > img {
+            width: clamp(1.5rem, 1.5vw, 0.5rem); 
+            height: auto;
+        }
+    }
+    /* Fin Seccion productos destacados */

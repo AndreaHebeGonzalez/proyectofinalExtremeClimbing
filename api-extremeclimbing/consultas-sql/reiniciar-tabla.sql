@@ -1,0 +1,2 @@
+DELETE FROM productos WHERE id > 0;
+ALTER TABLE productos AUTO_INCREMENT = 1;

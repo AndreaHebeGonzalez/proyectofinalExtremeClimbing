@@ -1,0 +1,173 @@
+/*--------------------------------------------------------------
+/** 4. MAIN
+--------------------------------------------------------------*/
+
+
+/* ========Seccion categorias======================== */
+.fondoPages { 
+    background-color: var(--color-body);
+}
+
+main {
+    text-align: center; /*! =========== !Copiado en index */
+}
+
+.fondoPages h1,
+.fondoPages h2,
+.fondoPages h3,
+.fondoPages h4,
+.fondoPages h5 {
+    font-style: normal;
+    font-weight: 300;
+    font-family: var(--fuente-primaria); 
+    color: var(--color-uno);
+}
+
+.fondoPages li,
+.fondoPages a {
+    color: var(--color-uno);
+}
+.contenedor {
+    text-align: center; /*Para centrar horizontalmente*/
+    padding: 25px ;
+}
+
+#categorias .cat-1 {
+    margin-bottom: 3%;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#categorias .cat-1 h2 {
+    position: absolute;
+    top: 60%;
+    left: 65%;
+    z-index: 5;
+}
+
+#categorias .cat-1::before {
+    content: '';
+    background: rgba(0, 0, 0, 0.469);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 3px;
+    z-index: 1;
+    left: 0;
+    pointer-events: none;
+    transition: 0.7s ease;
+}
+
+#categorias .cat-1:hover::before {
+    background: rgba(0, 0, 0, 0.286);
+} 
+
+#categorias > div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+}
+
+#categorias .cat-2{
+    position: relative;
+    width: 48.5%; 
+    height: auto;
+}
+
+#categorias .cat-2::before {
+    content: '';
+    background: rgb(0, 0, 0, 0.469);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 3px;
+    z-index: 1;
+    left: 0;
+    pointer-events: none;
+    transition: 0.7s ease;
+}
+
+#categorias .cat-2:hover::before {
+    background: rgba(0, 0, 0, 0.286);
+} 
+
+#categorias .cat-2 h2 {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+#categorias .cat-3 {
+    position: relative;
+    width: 48.5%; 
+    height: auto;
+}
+
+#categorias .cat-3 h2 {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+#categorias .cat-3::before {
+    content: '';
+    background: rgb(0, 0, 0, 0.469);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 3px;
+    z-index: 1;
+    left: 0;
+    pointer-events: none;
+    transition: 0.7s ease;
+}
+
+#categorias .cat-3:hover::before {
+    background: rgba(0, 0, 0, 0.286);
+} 
+
+/* ========FIN seccion categorías========================*/
+
+@media (min-width: 768px) {
+
+    .contenedor {
+        padding: 50px;
+    }
+
+    .carrusel-deslizante {
+        padding: 50px 0 70px 0;
+    }
+}
+
+@media (min-width: 1280px) {
+
+    /*========Seccion categorias========================*/
+
+    
+
+    #categorias .cat-1 h2 {
+        top: 75%;
+        left: 80%;
+    }
+
+    #categorias .cat-2 h2 {
+        top: 12%;
+    }
+
+    /*========FIN Seccion categorias========================*/
+}
+
+@media (min-width: 1900px) {
+    .contenedor {
+        padding: 100px;
+    }
+
+    /* Destacados */
+    .carrusel-deslizante {
+        padding: 100px 0;
+    }
+}
