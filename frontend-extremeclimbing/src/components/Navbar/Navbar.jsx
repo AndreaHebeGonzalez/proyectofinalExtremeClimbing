@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BtnAdmin from '../Botones/BtnAdmin';
 import './Navbar.css';
-import { useAbrirCarrito } from '../../EstadosGlobales.jsx/useAbrirCarrito'
-import { useCarrito } from '../../EstadosGlobales.jsx/useCarrito';
-import { useAuth } from '../../EstadosGlobales.jsx/useAuth';
+import { useAbrirCarrito } from '../../EstadosGlobales/useAbrirCarrito'
+import { useCarrito } from '../../EstadosGlobales/useCarrito';
+import { useAuth } from '../../EstadosGlobales/useAuth';
 
 
 const Navbar = () => {
@@ -31,6 +31,7 @@ const Navbar = () => {
     //datos de sesion
     const user = useAuth((state) => state.user);
     const isLogin = useAuth((state) => state.isLogin);
+    const logout = useAuth((state) => state.logout);
 
     //Iniciales de usuario:
 
@@ -77,6 +78,10 @@ const Navbar = () => {
         setMostrarSubmenu(false);
     };
 
+    const handleCerrarSesion = () => {
+        logout();
+        localStorage.removeItem('userData');
+    };
 
     return (
         <>
@@ -144,36 +149,36 @@ const Navbar = () => {
                             <li className="item-nav">
                                 <Link to="/contacto" className="link-nav">Contacto</Link>
                             </li>
+                            
+                            {isLogin === false && <li className="item-nav" id="iniciar-sesion">
+                                <Link to="/login" className="link-nav">Iniciar sesión</Link>
+                            </li>}
 
-                            <li className="item-nav" id="cliente" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}> {/* <!-- No aparece en version mobile --> */}
+                            {isLogin === false && <li className="item-nav" id="registrarse">
+                                <Link to="/registro" className="link-nav registrarse">Registrarse</Link>
+                            </li>}
+                            
+
+                            {user && isLogin === true && <li className="item-nav" id="cliente" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}> {/* <!-- No aparece en version mobile --> */}
                                 <Link to="#" className="link-nav">Cliente</Link>
 
                                 <div className= {`nav-contenedor-cliente ${mostrarSubmenu ? "mostrar-submenu-cliente" : ""}`}>
 
-                                    {isLogin === false && <ul className="nav-cliente">
-                                        <li>
-                                            <Link to="/login" className="link-nav" style={{ fontSize: '16px' }}>Ingresá</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/registro" className="link-nav" style={{ fontSize: '16px' }}>Registrate</Link>
-                                        </li>
-                                    </ul>}
-
-                                {isLogin && <ul className="nav-cliente">
+                                    <ul className="nav-cliente">
                                         <div className='user-login'>
                                             <div className='avatar-user'><span>{`${user.nombre.charAt(0)}${user.apellido.charAt(0)}`}</span></div>
-                                            <h3>{`${user.nombre} ${user.apellido}`}</h3>
+                                            <span>{`${user.nombre} ${user.apellido}`}</span>
                                         </div>
                                         <li>
                                             <Link to="/mi-cuenta" style={{ fontSize: '16px' }}>Mi cuenta</Link>
                                         </li>
-                                        <li style={{ fontSize: '16px' }}>  {/* Cerrar sesion implica solicitud fetch y vaciamiento de local storage y del estado global user */}
+                                        <li className="cerrar-sesion" style={{ fontSize: '16px' }} onClick={handleCerrarSesion}>  {/* Cerrar sesion implica solicitud fetch y vaciamiento de local storage y del estado global user */}
                                             Cerrar sesión
                                         </li>
-                                    </ul>}
+                                    </ul>
 
                                 </div>
-                            </li>
+                            </li>}
 
                             {user && user.rol === "admin" && <li>
                             <Link to="/administracion">
@@ -186,10 +191,12 @@ const Navbar = () => {
                         </ul>
                     </nav>
 
-                    <div className="login-register-contenedor"> {/* <!-- Aparece en version mobile --> */}
+                    {/* <!-- Aparece en version mobile --> */}
+
+                    {isLogin === false && <div className="login-register-contenedor"> 
                         <div>
                             <img className="icono" src="../../public/imagenes/iconos/usuario.png" alt="Botón Login"/>
-                            <a href="#">Ingresá</a>
+                            <Link to="/login">Ingresá</Link>
                         </div>
 
                         <div id="slash">
@@ -198,9 +205,24 @@ const Navbar = () => {
 
                         <div id="registro">
                             <img className="icono" src="../../public/imagenes/iconos/registro.png" alt="Botón registro"/>
-                            <a href="#">Registrate</a>
+                            <a href="/registro">Registrate</a>
                         </div>
-                    </div>
+                    </div>}
+
+                    
+                    {isLogin && <ul className="nav-cliente-mobile">
+                        <div className='user-login'>
+                            <div className='avatar-user'><span>{`${user.nombre.charAt(0)}${user.apellido.charAt(0)}`}</span></div>
+                            <h3>{`${user.nombre} ${user.apellido}`}</h3>
+                        </div>
+                        <li>
+                            <Link to="/mi-cuenta" style={{ fontSize: '16px' }}>Mi cuenta</Link>
+                        </li>
+                        <li className="cerrar-sesion" style={{ fontSize: '16px' }} onClick={handleCerrarSesion}>  {/* Cerrar sesion implica solicitud fetch y vaciamiento de local storage y del estado global user */}
+                            Cerrar sesión
+                        </li>
+                    </ul>}
+
 
                     {/* <!--FIN items menú mobile - desktop--> */}
                 </div>

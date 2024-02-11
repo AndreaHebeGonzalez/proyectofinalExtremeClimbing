@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Portada from '../../components/Inicio/Portada'
 import './Inicio.css'
 import CarruselMarcas from '../../components/Inicio/CarruselMarcas'
 import Banner1 from '../../components/Inicio/Banner1'
 import CarruselDestacados from '../../components/Inicio/CarruselDestacados'
 
-
 const Inicio = () => {
-
+    
     return (
         <div className="fondoPages">  
             <Portada />

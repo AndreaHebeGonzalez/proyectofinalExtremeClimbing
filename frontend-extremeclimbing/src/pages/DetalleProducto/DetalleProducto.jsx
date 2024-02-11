@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import './DetalleProducto.css'
 import Imagenes from '../../components/DetallesProductos/Imagenes';
-import { useCarrito } from '../../EstadosGlobales.jsx/useCarrito';
+import { useCarrito } from '../../EstadosGlobales/useCarrito';
 
 const DetalleProducto = () => {
 	const [producto, setProducto] = useState([]);
@@ -12,9 +12,10 @@ const DetalleProducto = () => {
 	const [productoPresente, setProductoPresente] = useState(false);
 	const agregarProducto = useCarrito((state) => state.agregarProducto);
 	const productosCarrito = useCarrito((state) => state.productosCarrito);
-	const { id } = useParams();
 
-	
+	const carritoActualLS = JSON.parse(localStorage.getItem('carrito')) || [];
+
+	const { id } = useParams();
     
 	
 	useEffect(() => {
@@ -34,13 +35,14 @@ const DetalleProducto = () => {
         reqFetch();
     }, []);
 
+	/* useEffect(() => {
+		setProductoPresente(productosCarrito.some(p => p.id === producto.id))
+	}, []) */
+
 	useEffect(() => {
 		setProductoPresente(productosCarrito.some(p => p.id === producto.id))
-	}, [productosCarrito, id])
+	}, [productosCarrito])
 	
-	useEffect(() => {
-        console.log(producto)
-    }, [producto]);
 
 	const urlbase = "http://localhost:8000/";
     
@@ -59,8 +61,13 @@ const DetalleProducto = () => {
 	};
 
 	const handleAgregarProducto = () => {
+		const productoPresente = productosCarrito.some(p => p.id === producto.id);
 		if (!productoPresente) {
-			agregarProducto({ urlImg, nombre: producto.nombre, precio: producto.precio, id: producto.id, cantidadProducto: 1 })
+			//Agrego producto al estado global:
+			agregarProducto({ urlImg, nombre: producto.nombre, marca: producto.marca, precio: producto.precio, id: producto.id, cantidadProducto: 1 })
+			//Agrego producto al LS:
+			carritoActualLS.push({ urlImg, nombre: producto.nombre, marca: producto.marca, precio: producto.precio, id: producto.id, cantidadProducto: 1 });
+			localStorage.setItem('carrito', JSON.stringify(carritoActualLS));
 		} ;
 	};
 

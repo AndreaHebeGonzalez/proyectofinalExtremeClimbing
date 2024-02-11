@@ -46,12 +46,13 @@ const cargarOrden = async (req, res) => { //recibo del front un array de objetos
 
     try {
         const idUsuario = req.session.idUsuario;
-        const { detallesOrden } = req.body;
+        const detallesOrden = req.body;
+        console.log(detallesOrden);
         const detallesConCostoParcial = detallesOrden.map((detalle) => ({ //se usan parentesis encerrando las llaves para devolver un objeto literal, si no se utilizaran js podria interpretar el inicio de un bloque, se evita ambiguedad sintactica 
             ...detallesOrden,
             costoParcial: detalle.precioUnitario * detalle.cantidad,
         }));
-        const precioTotal = detallesConCostoParcial.reduce((precioTotal, detalleOrden) => precioTotal + detalleOrden.precioParcial, 0);
+        const precioTotal = detallesConCostoParcial.reduce((precioTotal, detalleOrden) => precioTotal + detalleOrden.costoParcial, 0);
             
         const nuevaOrden = await OrdenDeCompra.create({
             idUsuario,

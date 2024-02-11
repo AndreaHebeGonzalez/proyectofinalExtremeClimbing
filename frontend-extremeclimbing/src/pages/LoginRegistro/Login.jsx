@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import FormLogin from '../../components/LoginRegistro/FormLogin'
-import { useAuth } from '../../EstadosGlobales.jsx/useAuth';
+import { useAuth } from '../../EstadosGlobales/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -50,7 +50,6 @@ const Login = () => {
                 },
                 body: JSON.stringify(formData)
             });
-
             if (respuesta.ok) {
                 console.log('Usuario logueado con exito', respuesta.status);
                 const datosRespuesta = await respuesta.json();
@@ -65,13 +64,11 @@ const Login = () => {
                 
             } else {
                 const datosError = await respuesta.json();
-                console.error('Mensaje del servidor:', datosError.msg);
+                console.error('Mensaje del servidor:', datosError.msg, respuesta.status);
                 setRespuestaStatus(respuesta.status);
-                /*Manejar error de email repetido o usuario ya registrado*/
-                console.error('Error al enviar el formulario. Código de estado:', respuesta.status);
             }; 
         } catch (error) {
-            ('Error:', error);
+            console.error('Error:', error);
         };
     };
 

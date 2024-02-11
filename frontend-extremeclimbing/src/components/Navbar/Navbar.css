@@ -19,6 +19,8 @@
 /* Elementos que no aparecen en mobile */
 
 #cliente,
+#registrarse,
+#iniciar-sesion,
 .nav-categorias-desktop {
     display: none;
 }
@@ -179,6 +181,28 @@
     font-weight: 500;
 }
 
+#iniciar-sesion {
+    padding: 0.3rem 0.8rem 0.3rem 0.8rem;
+    border-radius: 5px;
+    background-color: #000000a9;
+}
+
+#iniciar-sesion a {
+    color: var(--color-uno);
+    font-size: clamp(0.8rem, 1.3vw, 2rem);
+}
+
+#registrarse {
+    padding: 0.3rem 0.8rem 0.3rem 0.8rem;
+    border-radius: 5px;
+    background-color: var(--color-destacable);
+}
+
+#registrarse a {
+    color: var(--color-uno);
+    font-size: clamp(0.8rem, 1.3vw, 2rem);
+}
+
 /* Boton cliente del menú principal desktop */
 
 #cliente > a:nth-child(1) {
@@ -205,9 +229,7 @@
     visibility: visible;
     opacity: 1;
     height: 100%;
-
 }
-
 
 .nav-cliente {
     z-index: 55;
@@ -225,7 +247,22 @@
     box-shadow: -0px 0px 10px 1px rgba(0, 0, 0, 0.337);
 }
 
-.nav-cliente li {
+.nav-cliente-mobile {
+    width: 100%;
+    background-color: rgb(227, 223, 223);
+    display: flex;
+    flex-direction: column !important;
+    justify-content: space-evenly;
+    gap: 0 !important;
+}
+
+.nav-cliente-mobile h3 {
+    color: var(--color-dos);
+    font-size: clamp(1rem, 1.7vw, 2.3rem);
+}
+
+.nav-cliente li,
+.nav-cliente-mobile li {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem !important;
     border-bottom: 1px solid rgb(255, 255, 255) !important;
     width: 100%;
@@ -246,7 +283,8 @@
     background-color: rgb(208, 208, 208);
 }
 
-.nav-cliente li a {
+.nav-cliente li a,
+.nav-cliente-mobile li a {
     color: var(--color-dos) !important;
     font-weight: 300;
 }
@@ -256,7 +294,7 @@
     font-weight: 300 !important;
 }
 
-.nav-cliente .user-login {
+.user-login {
     border-bottom: 1px solid rgb(255, 255, 255);
     width: 100%;
     display: flex;
@@ -270,17 +308,25 @@
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
-    background-color: #4203ee;
+    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: #000000;
+    font-weight: 500;
 }
 
-.nav-cliente .user-login h3 {
+.user-login span {
     font-weight: 500;
     display: flex;
     flex-wrap: nowrap;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+    color: var(--color-dos);
+}
+
+.cerrar-sesion {
+    cursor: pointer;
+    
 }
 /* FIN Propiedades para submenú cliente en menu desktop */
 
@@ -391,7 +437,9 @@
 
     /* Elementos que aparecen en desktop */
     .nav-categorias-desktop, 
-    #cliente {
+    #cliente,
+    #registrarse,
+    #iniciar-sesion {
         display: block;
     }
 
@@ -409,7 +457,9 @@
     #icono-hamburguesa,
     #header-menu-mobile,
     .login-register-contenedor,
-    #item-productos {
+    .user-mobile,
+    #item-productos,
+    .nav-cliente-mobile {
         display: none;
     }
 

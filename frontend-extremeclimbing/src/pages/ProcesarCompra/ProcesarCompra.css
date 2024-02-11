@@ -1,7 +1,6 @@
 .contenedor-pages {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin: 5vw 10vw;
     padding: 1rem 0;
@@ -42,22 +41,30 @@
 
 .contenedor-pages h2 {
     font-size: clamp(1.3rem, 3.2vw, 3.6rem); 
+    color: var(--color-dos);
 }
 
 .contenedor-pages h3 {
     font-size: clamp(1.15rem, 2.5vw, 3.1rem);
     font-family: var(--fuente-primaria);
     font-weight: 400;
+    color: var(--color-dos);
 }
 
 .contenedor-pages h4 {
     font-size: clamp(1rem, 1.8vw, 3.2rem);
     font-weight: 400;
+    color: var(--color-dos);
+}
+
+.contenedor-pages h5 {
+    color: var(--color-dos);
 }
 
 .contenedor-pages p {
     color: var(--color-dos);
 }
+
 
 .iconos-chicos {
     width: clamp(0.8rem, 1vw, 1.5rem);
@@ -87,6 +94,15 @@
     color: var(--color-destacable-dos);
     font-size: clamp(0.9rem, 1.0vw, 2rem);
     cursor: pointer;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+}
+
+.btn-estilo1:hover img {  
+    transform: translateX(-5px) ;
 }
 
 .btn-estilo2 {

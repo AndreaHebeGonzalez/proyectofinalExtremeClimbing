@@ -41,7 +41,7 @@ const validarFormatoNacimiento = body('nacimiento')
 .isISO8601()
 .withMessage('La fecha de nacimiento debe estar en formato ISO8601');
 
-const validarEdad = body('nacimiento') 
+const validarEdad = body('nacimiento') //!ESTE VALIDADOR GENERA ERROR DE 422 Unprocessable Entity PUEDE QUE TENGA QUE VER CON EL FORMATO DE LA FECHA
     .custom((value) => {
         try {
             const nacimiento = new Date(value);

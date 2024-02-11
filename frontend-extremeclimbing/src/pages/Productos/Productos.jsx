@@ -1,8 +1,8 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
 import CardProductos from '../../components/Productos/CardProductos';
-import './Productos.css'
-import Cart from '../../components/Carrito/Carrito'
+import './Productos.css';
+
 
 const Productos = () => {
 
@@ -47,7 +47,6 @@ const Productos = () => {
 
     return (
         <>
-            <Cart />
             <section className='contenedor-admin margin'>
                 <div className="titulo">
                     <h2>Productos</h2>

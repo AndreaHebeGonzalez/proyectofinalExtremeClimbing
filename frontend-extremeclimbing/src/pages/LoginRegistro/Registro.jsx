@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import FormRegistro from '../../components/LoginRegistro/FormRegistro';
 import VentanaModal from '../../components/VentanaModal/VentanaModal';
 import passwordValidator from 'password-validator';
+import { useAuth } from '../../EstadosGlobales/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const Registro = () => {
 
@@ -28,7 +30,11 @@ const Registro = () => {
 
     const[contraseñasCoinciden, setContraseñasCoinciden] = useState(false);
 
-    
+    //Estado global
+    const login = useAuth((state) => state.login);
+
+    //Para redireccionamiento:
+    const navegar = useNavigate();
 
     //Maneja ventana modal
     const [formEnviado, setFormEnviado] = useState(false);
@@ -150,10 +156,35 @@ const Registro = () => {
             });
 
             if (respuesta.ok) {
-                setTimeout(() => {
-                    setFormEnviado(true);
-                    //loguear usuario en el front
-                }, 1000);
+                try {
+                    const formData = {
+                        email: formDataLimpio.email,
+                        contraseña: formDataLimpio.contraseña
+                    };
+                    const respuestaLogin = await fetch ("http://localhost:8000/usuarios/signin", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    if(respuestaLogin.ok) {
+                        console.log('Usuario logueado con exito', respuesta.status);
+                        const datosRespuesta = await respuestaLogin.json();
+                        console.log(datosRespuesta.dataUsuario);
+                        const dataUsuario = datosRespuesta.dataUsuario;
+                        //Almaceno los datos de session en el estado global useAuth
+                        login(dataUsuario);
+                        //Almaceno los datos de session en el local storage para persistencia si cierra el navegador:
+                        localStorage.setItem('userData', JSON.stringify(dataUsuario));
+                        //redirijo al inicio con el logueo ya hecho: 
+                        navegar('/');
+                    } else {
+
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
             } else {
                 /*Manejar error de email repetido o usuario ya registrado*/
                 console.error('Error al enviar el formulario. Código de estado:', respuesta.status);

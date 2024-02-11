@@ -2,6 +2,7 @@
     z-index: 1000;
     width: 100%;
     min-height: 40%;
+    max-height: 99vh;
     background-color: #f0f0f0e3;
     position: fixed;
     top:0; 
@@ -11,6 +12,7 @@
     transition: transform 1s ease;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .titulo-cart {
@@ -146,6 +148,18 @@
     .ventana-carrito {
         width: 60%;
     }
+    .item-cart h3 {
+        font-size: 18px;
+    }
+    .item-cart input {
+        font-size: 16px;
+    }
+    .total-cart span {
+        font-size: 18px;
+        font-weight: 500;
+        color: #050505;
+    }
+    
 }
 
 @media (min-width: 1024px ) {

@@ -1,9 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom';
+import { useCarrito } from '../../EstadosGlobales/useCarrito';
+import { useAbrirCarrito } from '../../EstadosGlobales/useAbrirCarrito'
 
 const CardProductosCarrusel = ({ producto, refHijo, obtenerAncho, obtuveAnchoCard }) => {
     const cardRef = useRef(null);
-    
+    const [productoPresente, setProductoPresente] = useState(false);
+    const [urlImg, setUrlImg] = useState("");
+    const agregarProducto = useCarrito((state) => state.agregarProducto);
+    const productosCarrito = useCarrito((state) => state.productosCarrito);
+    const abrirCarrito = useAbrirCarrito((state) => state.abrirCarrito);
+
+    const carritoActualLS = JSON.parse(localStorage.getItem('carrito')) || [];
 
     useEffect(() => {
         if (cardRef.current && !obtuveAnchoCard) {
@@ -11,6 +19,26 @@ const CardProductosCarrusel = ({ producto, refHijo, obtenerAncho, obtuveAnchoCar
             obtenerAncho(ancho)
         };
     }, [refHijo]);
+
+    useEffect(() => {
+		setProductoPresente(productosCarrito.some(p => p.id === producto.id))
+	}, [productosCarrito]);
+
+    useEffect(() => {
+        if (producto && producto.imagenes && producto.imagenes.length > 0) {
+            setUrlImg(`${urlbase}${producto.imagenes[0]}`);
+        }
+    }, [producto]);
+
+    const handleAgregarProducto = () => {
+		if (!productoPresente) {
+            //Agrego producto al estado global
+			agregarProducto({ urlImg, nombre: producto.nombre, marca: producto.marca, precio: producto.precio, id: producto.id, cantidadProducto: 1 })
+            //Agrego producto al LS:
+            carritoActualLS.push({ urlImg, nombre: producto.nombre, marca: producto.marca, precio: producto.precio, id: producto.id, cantidadProducto: 1 });
+            localStorage.setItem('carrito', JSON.stringify(carritoActualLS));
+        };
+	};
     
     const urlbase = "http://localhost:8000/";
     const urlCompleta= `${urlbase}${producto.imagenes[0]}`;
@@ -21,7 +49,8 @@ const CardProductosCarrusel = ({ producto, refHijo, obtenerAncho, obtuveAnchoCar
         <article key= {producto.id} className="contenedor-producto" ref={cardRef}> 
             <div className="producto">
                 <div className="row-img-iconos">
-                    <img className="iconos-respons" src="../../public/imagenes/iconos/sumar-a-carrito.png" alt="Agregalo al carrito"/>
+                    {productoPresente === false && <img style={{ alignSelf: 'start'}} className="iconos-respons icono-sumar-a-carrito" onClick={handleAgregarProducto} src="../../public/imagenes/iconos/sumar-a-carrito.png" alt="Agregalo al carrito"/>}
+                    {productoPresente && <img style={{ alignSelf: 'start'}} className="iconos-respons icono-sumar-a-carrito" onClick={() => {abrirCarrito()}} src="../../public/imagenes/iconos/carrito.png" alt="Ver carrito"/>}
                     <img className="articulo" src={urlCompleta} alt="Producto 1" />
                     <img className="iconos-respons" src="../../public/imagenes/iconos/me-gusta-32.png" alt="Sumalo a tus favoritos"/>
                 </div>

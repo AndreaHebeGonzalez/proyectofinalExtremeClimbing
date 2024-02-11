@@ -32,6 +32,8 @@ const {
 
 usuariosRouter.get('/', usuariosController.obtenerTodos); //!Funcionando
 
+usuariosRouter.get("/perfil", usuariosController.verificarSesion);
+
 usuariosRouter.post(//!Funcionando
     "/signin", 
     [validarEmail, validarContraseña, validarErrores], 
@@ -40,11 +42,13 @@ usuariosRouter.post(//!Funcionando
 
 usuariosRouter.post(//!Funcionando
     "/",
-    [validarNombre, validarApellido, validarFormatoNacimiento, validarEdad, validarEmail, validarContraseña, validarErrores], 
+    [validarNombre, validarApellido, validarFormatoNacimiento, validarEmail, validarContraseña, validarErrores], 
     usuariosController.signUp
 );
 
 usuariosRouter.post("/signout", usuariosController.signOut); //!Funcionando
+
+
 
 usuariosRouter.put( //!Funcionando
     "/actualizarEmail", 

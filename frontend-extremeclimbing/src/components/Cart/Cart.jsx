@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 
 import './Cart.css'
 import Btn2 from '../Botones/Btn2'
-import { useAbrirCarrito } from '../../EstadosGlobales.jsx/useAbrirCarrito'
-import { useCarrito } from '../../EstadosGlobales.jsx/useCarrito'
+import { useAbrirCarrito } from '../../EstadosGlobales/useAbrirCarrito'
+import { useCarrito } from '../../EstadosGlobales/useCarrito'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
     const abrirCarrito = useAbrirCarrito((state) => state.carritoAbierto);
@@ -11,7 +12,13 @@ const Cart = () => {
     const productosCarrito = useCarrito((state) => state.productosCarrito);
     const eliminarProducto = useCarrito((state) => state.eliminarProducto);
     const actualizarCarrito = useCarrito((state) => state.actualizarCarrito);
+    let carritoActualLS = JSON.parse(localStorage.getItem('carrito'));
     
+    const eliminarProductoLS = (id) => {
+        carritoActualLS = carritoActualLS.filter(p =>  p.id !== id);
+        localStorage.setItem('carrito', JSON.stringify(carritoActualLS));
+    };
+
     const handleSumarUno = (index) => {
         const nuevosProductos = [...productosCarrito];
         nuevosProductos[index].cantidadProducto++;
@@ -46,11 +53,14 @@ const Cart = () => {
                     <h3>{p.nombre}</h3>
                     <div className="cantidad">
                         <img className="icono" src="../../../public/imagenes/iconos/sumar.png" onClick={() => handleSumarUno(index)} alt="sumar uno"/>
-                        <input type="number" min={1} value={p.cantidadProducto} />
+                        <input type="number" min={1} value={p.cantidadProducto} readOnly/>
                         <img className="icono" src="../../../public/imagenes/iconos/restar.png" onClick={() => handleRestarUno(index)} alt="restar uno"/>
                     </div>
                     <p>$<span>{p.precio * p.cantidadProducto}</span></p>
-                    <img onClick={() => eliminarProducto(index)} className="iconos-medianos" src="../../public/imagenes/iconos/tachito.png" alt="Eliminar producto del carrito"/>
+                    <img onClick={() => {
+                        eliminarProducto(index);
+                        eliminarProductoLS(p.id);
+                        }} className="iconos-medianos" src="../../public/imagenes/iconos/tachito.png" alt="Eliminar producto del carrito"/>
                 </div>              
                 })}
             </div>
@@ -60,7 +70,9 @@ const Cart = () => {
                     <span>${productosCarrito ? `${obtenerTotal()}`: '0'}</span>
                 </div>
                 <div className="cont-btn">
-                    <Btn2 accion='Procesar Compra' />
+                <Link to="/procesar-compra">
+                    <Btn2 accion='Finalizar compra' disabled={productosCarrito.length === 0} />
+                </Link>
                 </div>
             </div>
             

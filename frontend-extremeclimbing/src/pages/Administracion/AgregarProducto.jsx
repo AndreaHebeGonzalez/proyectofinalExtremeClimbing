@@ -170,7 +170,7 @@ const AgregarProducto = () => {
                 console.error('Error al enviar el formulario. Código de estado:', respuesta.status);
             };
 		} catch (error) {
-			('Error:', error);
+			console.error('Error:', error);
 		};
 	};
 

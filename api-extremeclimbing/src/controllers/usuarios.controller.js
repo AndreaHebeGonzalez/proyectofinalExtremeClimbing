@@ -38,9 +38,12 @@ const signUp = async (req, res) => { //!Funcionando
             telefono
         });
         //Almaceno info no sensible que, se me ocurre, puedo requerir en la session
-        req.session.idUsuario = nuevoUsuario.idUsuario;
-        req.session.email = nuevoUsuario.email;
-        req.session.rol = nuevoUsuario.rol;
+            req.session.idUsuario = nuevoUsuario.idUsuario;
+            req.session.nombre = nuevoUsuario.nombre,
+            req.session.apellido = nuevoUsuario.apellido,
+            req.session.nacimiento = nuevoUsuario.nacimiento,
+            req.session.email = nuevoUsuario.email
+            req.session.rol = nuevoUsuario.rol;
         return res.status(201).json('Usuario logueado');
         //201 se utiliza para indicar que una solicitud ha sido exitosa y ha llevado a la creación de un nuevo recurso en el servidor. 
     } catch (error) {
@@ -80,6 +83,9 @@ const signIn = async (req, res) => { //!Funcionando
 
         if(!req.session.idUsuario) {
             req.session.idUsuario = usuario.idUsuario;
+            req.session.nombre = usuario.nombre,
+            req.session.apellido = usuario.apellido,
+            req.session.nacimiento = usuario.nacimiento,
             req.session.email = usuario.email
             req.session.rol = usuario.rol;
         };
@@ -204,6 +210,14 @@ const borrarUsuario = async (req, res) => { //!Funcionando
     };
 };
 
+const verificarSesion = async (req, res) => {
+    if (req.session.idUsuario) {
+        res.json({ nombre: req.session.nombre, apellido: req.session.apellido, nacimiento: req.session.nacimiento, email: req.session.email, rol: req.session.rol });
+    } else {
+        res.status(401).json({ message: 'Usuario no autenticado' });
+    };
+};
+
 //!CREAR CONTROLADOR PARA RECUPERACION DE CONTRASEÑA
 
 
@@ -214,7 +228,8 @@ module.exports = {
     signOut,
     actualizarEmail,
     actualizarContraseña,
-    borrarUsuario
+    borrarUsuario,
+    verificarSesion
 };
 
 
