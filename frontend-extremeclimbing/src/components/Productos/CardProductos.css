@@ -1,0 +1,11 @@
+.producto h3{
+    font-size: clamp(0.9rem, 1.4vw, 2.5rem);
+}
+
+.producto h4 {
+    font-size: clamp(0.9rem, 1.2vw, 2.1rem);
+}
+
+.producto span {
+    font-size: clamp(0.9rem, 1.2vw, 2.1rem);
+}

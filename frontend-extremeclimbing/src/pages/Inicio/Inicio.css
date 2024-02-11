@@ -1,0 +1,218 @@
+
+
+/*--------------------------------------------------------------
+/** 4. MAIN
+--------------------------------------------------------------*/
+.fondoPages h1 {
+    font-size: clamp(2.4rem, 4vw, 6rem);
+}
+
+.fondoPages h2 {
+    font-size: clamp(1.3rem, 3vw, 3.8rem);
+}
+
+.fondoPages h3 {
+    font-size: clamp(1rem, 2.8vw , 3.4rem); 
+}
+
+.fondoPages h4 {
+    font-size: clamp(0.9rem, 1.4vw, 2.5rem);
+}
+
+.fondoPages h5 {
+    font-size: clamp(0.9rem, 1.2vw, 2.1rem);
+}
+
+.fondoPages p {
+    font-family: var(--fuente-parrafos); 
+    font-size: clamp(0.9rem, 1.2vw, 1.6rem); 
+}
+
+@media (min-width: 1024px) {
+    h2 {
+        font-size: clamp(1.3rem, 3.5vw, 4rem);
+    } 
+}
+
+@media (min-width: 1280px) {
+    h2 {
+        font-size: clamp(1.3rem, 3vw, 4rem);
+    }  
+}
+
+@media (min-width: 1440px) {
+    h2 {
+        font-size: clamp(1.3rem, 2.5vw, 3.8rem);
+    }  
+
+    h3 {
+        font-size: clamp(1rem, 2vw, 3.5rem); 
+    }
+}
+
+
+/* ========Seccion categorias======================== */
+.fondoPages { 
+    background-color: var(--color-body);
+}
+
+main {
+    text-align: center; /*! =========== !Copiado en index */
+}
+
+.fondoPages h1,
+.fondoPages h2,
+.fondoPages h3,
+.fondoPages h4,
+.fondoPages h5 {
+    color: var(--color-uno);
+}
+
+.fondoPages li,
+.fondoPages a {
+    color: var(--color-uno);
+}
+.contenedor {
+    text-align: center; /*Para centrar horizontalmente*/
+    padding: 25px ;
+}
+
+#categorias .cat-1 {
+    margin-bottom: 3%;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#categorias .cat-1 h2 {
+    position: absolute;
+    top: 60%;
+    left: 65%;
+    z-index: 5;
+}
+
+#categorias .cat-1::before {
+    content: '';
+    background: rgba(0, 0, 0, 0.469);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 3px;
+    z-index: 1;
+    left: 0;
+    pointer-events: none;
+    transition: 0.7s ease;
+}
+
+#categorias .cat-1:hover::before {
+    background: rgba(0, 0, 0, 0.286);
+} 
+
+#categorias > div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+}
+
+#categorias .cat-2{
+    position: relative;
+    width: 48.5%; 
+    height: auto;
+}
+
+#categorias .cat-2::before {
+    content: '';
+    background: rgb(0, 0, 0, 0.469);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 3px;
+    z-index: 1;
+    left: 0;
+    pointer-events: none;
+    transition: 0.7s ease;
+}
+
+#categorias .cat-2:hover::before {
+    background: rgba(0, 0, 0, 0.286);
+} 
+
+#categorias .cat-2 h2 {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+#categorias .cat-3 {
+    position: relative;
+    width: 48.5%; 
+    height: auto;
+}
+
+#categorias .cat-3 h2 {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+#categorias .cat-3::before {
+    content: '';
+    background: rgb(0, 0, 0, 0.469);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 3px;
+    z-index: 1;
+    left: 0;
+    pointer-events: none;
+    transition: 0.7s ease;
+}
+
+#categorias .cat-3:hover::before {
+    background: rgba(0, 0, 0, 0.286);
+} 
+
+/* ========FIN seccion categorías========================*/
+
+@media (min-width: 768px) {
+
+    .contenedor {
+        padding: 50px;
+    }
+
+    .carrusel-deslizante {
+        padding: 50px 0 70px 0;
+    }
+}
+
+@media (min-width: 1280px) {
+
+    /*========Seccion categorias========================*/
+
+    
+
+    #categorias .cat-1 h2 {
+        top: 75%;
+        left: 80%;
+    }
+
+    #categorias .cat-2 h2 {
+        top: 12%;
+    }
+
+    /*========FIN Seccion categorias========================*/
+}
+
+@media (min-width: 1900px) {
+    .contenedor {
+        padding: 100px;
+    }
+
+    /* Destacados */
+    .carrusel-deslizante {
+        padding: 100px 0;
+    }
+}

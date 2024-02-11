@@ -1,0 +1,175 @@
+.contenedor-pages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5vw 10vw;
+    padding: 1rem 0;
+    text-align: start;
+}
+
+.contenedor-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap:1rem;
+}
+
+.contenedor-row-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.contenedor-row-end {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    gap: 1rem;
+    width: 100%;
+}
+
+.contenedor-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+}
+
+.contenedor-pages h2 {
+    font-size: clamp(1.3rem, 3.2vw, 3.6rem); 
+}
+
+.contenedor-pages h3 {
+    font-size: clamp(1.15rem, 2.5vw, 3.1rem);
+    font-family: var(--fuente-primaria);
+    font-weight: 400;
+}
+
+.contenedor-pages h4 {
+    font-size: clamp(1rem, 1.8vw, 3.2rem);
+    font-weight: 400;
+}
+
+.contenedor-pages p {
+    color: var(--color-dos);
+}
+
+.iconos-chicos {
+    width: clamp(0.8rem, 1vw, 1.5rem);
+    height: auto;
+}
+
+.iconos-medianos {
+    width: clamp(1rem, 2.3vw, 1.2rem);
+    height: auto;
+}
+
+.contenedor-sub-total {
+    gap: 0.5rem;
+    width: 100%;
+    border: 0.5px solid #C1BFBF;
+    padding: 1rem;
+}
+
+.btn-estilo1 {
+    border: none;
+    text-align: center;
+    border-radius: 5px 0 5px 0;
+    width: auto;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 1px solid var(--color-destacable-dos);
+    color: var(--color-destacable-dos);
+    font-size: clamp(0.9rem, 1.0vw, 2rem);
+    cursor: pointer;
+}
+
+.btn-estilo2 {
+    font-size: clamp(1rem, 1.3vw, 2rem);
+    border: none;
+    border-radius: 5px;
+    background-color: #000;
+    color: var(--color-uno);
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+
+@media (min-width: 480px ) {
+    .contenedor-pages {
+        margin: 5vw 15vw;
+    }
+}
+
+@media (min-width: 768px ) {
+    .contenedor-pages {
+        margin: 5vw 20vw;
+    }
+    .contenedor-pages h2 {
+        font-size: clamp(1.3rem, 3vw, 3.6rem); 
+    }
+    
+    .contenedor-pages h3 {
+        font-size: clamp(1.15rem, 2.3vw, 3.1rem);
+    }
+    
+}
+
+@media (min-width: 1024px ) {
+    .contenedor-pages {
+        margin: 5vw 25vw;
+    }
+    .contenedor-pages h2 {
+        font-size: clamp(1.5rem, 2.5vw, 3.3rem); 
+    }
+
+    .contenedor-pages h3 {
+        font-size: clamp(1.1rem, 1.8vw, 3rem);
+    }
+
+    .contenedor-pages h4 {
+        font-size: clamp(1rem, 1.35vw, 2.5rem);
+    }
+
+}
+
+@media (min-width: 1280px ) {
+    .contenedor-pages {
+        margin: 5vw 28vw;
+    }
+    .contenedor-pages h2 {
+        font-size: clamp(1.5rem, 2.4vw, 3.3rem); 
+    }
+
+    .contenedor-pages h3 {
+        font-size: clamp(1.1rem, 1.6vw, 3rem);
+    }
+
+    .contenedor-pages h4 {
+        font-size: clamp(1rem, 1.2vw, 2.5rem);
+    }
+}
+
+@media (min-width: 1440px ) {
+    .contenedor-pages {
+        margin: 5vw 30vw;
+    }
+
+    .contenedor-pages h2 {
+        font-size: clamp(1.5rem, 2.1vw, 3rem); 
+    }
+
+    .contenedor-pages h3 {
+        font-size: clamp(1.1rem, 1.3vw, 2.8rem);
+    }
+
+    .contenedor-pages h4 {
+        font-size: clamp(1rem, 1vw, 2.5rem);
+    }
+
+}

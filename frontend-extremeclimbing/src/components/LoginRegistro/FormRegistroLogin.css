@@ -1,0 +1,189 @@
+.tituloForm { /* Sobreescribe lo establecido en estilo.css*/
+    padding-bottom: 30px; 
+}
+
+.tituloForm h2{
+    font-size: clamp(1.5rem, 2vw, 3.8rem);
+    color: var(--color-dos);
+}
+
+.tituloForm .borde {
+    border-top: 1px solid var(--color-footer-secundario)
+}
+
+.contenedorForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5vw 10vw;
+}
+
+.contenedorForm p {
+    color: var(--color-dos);
+}
+.asterisco {
+    color: red;
+}
+
+.formulario {
+    background-color: #D9D9D9;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.337);
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    padding: 25px;
+    width: 80%;
+}
+
+.formulario label {
+    color: var(--color-dos);
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* form > div:nth-child(2) > div {
+    margin-bottom: 16px;
+    border: 1px solid black;
+} */
+
+
+form small {
+    color: rgb(162, 1, 1);
+    font-size: 1rem;
+}
+
+form .cont-error {
+    padding: 1rem;
+    background-color: rgba(136, 21, 21, 0.234);
+    border: 1px solid rgb(162, 1, 1);
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+form input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    border-bottom: 2px solid var(--color-destacable);
+    height: 2.5rem ;
+    font-family: var(--fuente-parrafos); 
+    font-size: clamp(0.8125rem, 1.2vw, 2rem);
+}
+
+
+form label{
+    font-size: 1.2rem;
+}
+
+.formulario button {
+    align-self: center;
+    font-size: clamp(1rem, 1.0vw, 2rem);
+    border: 1px solid var(--color-dos);
+    color: var(--color-dos);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px 0 5px 0;
+    transition: 0.3s;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.formulario button:hover {
+    transform: translateY(2px);
+    box-shadow: initial;
+}
+
+.formulario form .btns-register-login {
+    justify-content: center;
+    align-items: center;
+    gap: 1.3rem;
+}
+
+.iconos-btn {
+    width: clamp(1rem, 1.2vw, 3rem);
+    height: auto;
+}
+
+.cont-input-eyes {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.cont-input-eyes input {
+    width: 100%;
+}
+
+.cont-input-eyes img {
+    position: absolute;
+    right: 5%;
+}
+
+.formulario form .boton-contenedor {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.formulario p {
+    font-size: clamp(0.9rem, 1.0vw, 2rem);
+    text-align: end;
+}
+
+.cont-validar-contraseña {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:0.2rem;
+}
+
+.validar-contraseña {
+    font-family: var(--fuente-parrafos);
+    font-size: 12px;
+    color: rgb(74, 74, 251);
+}
+
+
+@media (min-width: 1200px) {
+
+    .formulario {
+        width: 80%;
+    }
+    
+    form > div {  /*A los hijos directos de form aplico estas propiedades*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    form > div:nth-child(2) > div, 
+    form > div:nth-child(3) > div {
+        width:50%;
+    }
+
+    form > div:nth-child(2) > div input,
+    form > div:nth-child(3) > div input {
+        width: 100%;
+    }
+
+    form > div:nth-child(2) > div small,
+    form > div:nth-child(3) > div small {
+        align-self: self-start;
+    }
+}

@@ -23,7 +23,7 @@ const obtenerTodos = async (req, res) => { //!Funcionando
 const signUp = async (req, res) => { //!Funcionando
     try {
         const { nombre, apellido, nacimiento, email, contraseña, provincia, localidad, codigoPostal, nombreCalle, numeroCalle, telefono } = req.body;
-        console.log(nacimiento)
+        console.log(nacimiento);
         const nuevoUsuario = await Usuarios.create({
             nombre,
             apellido,
@@ -41,11 +41,14 @@ const signUp = async (req, res) => { //!Funcionando
         req.session.idUsuario = nuevoUsuario.idUsuario;
         req.session.email = nuevoUsuario.email;
         req.session.rol = nuevoUsuario.rol;
-        res.status(201).json('Usuario logeado');
+        return res.status(201).json('Usuario logueado');
         //201 se utiliza para indicar que una solicitud ha sido exitosa y ha llevado a la creación de un nuevo recurso en el servidor. 
     } catch (error) {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            return res.status(400).json({ error: 'El correo electrónico ya está registrado' });
+        }
         console.error('Se ha producido un error, el usuario no ha podido registrarse', error);
-        res.status(500).json({msg:'Se ha producido un error, el usuario no ha podido registrarse', error})
+        return res.status(500).json({msg:'Se ha producido un error, el usuario no ha podido registrarse', error})
     };
 };
 
@@ -141,7 +144,7 @@ const actualizarContraseña = async (req, res) => { //!Funcionando
             }, {
                 where: { idUsuario }
             }); 
-            if(req.session.idUsuario) {
+            if (req.session.idUsuario) {
                 console.log(req.session);
                 req.session.destroy((error) => {
                     if (error) {

@@ -1,0 +1,64 @@
+#portada {
+    position: relative;
+    background-color: var(--color-body);
+}
+
+#portada .img-1 {
+    width: 100%;
+    height: auto;
+}
+
+#portada > div:nth-child(2) {
+    border: 1px solid rebeccapurple;
+    /* position: absolute;
+    top: 59%;
+    left: 70%; */
+    
+}
+
+#portada .img-propaganda {
+    width: 35%;
+    height: auto;
+    position: absolute;
+    top: 30%;
+    left: 60%;
+}
+
+#portada button {
+    top: 70%;
+    left: 65%;
+    position: absolute;
+}
+
+@media (min-width: 768px) {
+
+    #portada {
+        padding-bottom: 50px;
+    }
+
+    /*Ubicacion boton portada*/
+    #portada button {
+        top: 78%;
+        left: 63%;
+        position: absolute;
+    }
+    
+    #portada .img-propaganda {
+        width: 22%;
+        top: 50%;
+    }
+}
+
+@media (min-width: 1280px) {
+     /* Ubicacion boton portada */
+
+    #portada button {
+        top: 75%;
+        left: 66%;
+        position: absolute;
+    }
+
+    #portada .img-propaganda {
+        width: 23%;
+    }
+}

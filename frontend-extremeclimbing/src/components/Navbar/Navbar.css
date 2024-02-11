@@ -1,0 +1,469 @@
+/*--------------------------------------------------------------
+/** 3. HEADER
+--------------------------------------------------------------*/
+
+
+.ver {
+    opacity: 1;
+}
+
+.no-ver {
+    opacity: 0;
+}
+
+.logo img {
+    width: 150px;
+    height: auto;
+}
+
+/* Elementos que no aparecen en mobile */
+
+#cliente,
+.nav-categorias-desktop {
+    display: none;
+}
+
+/* Para que aparezca el menu mobile */
+
+.visible {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.estado {
+    display: none;
+}
+
+.mostrar {
+    visibility: visible;
+    opacity: 1;
+}
+
+.contenedor-menu-general {
+    background-color: var(--color-uno);
+    border-bottom: #000000 0.5px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem; 
+    position: relative;
+}
+
+.contenedor-menu-general a {
+    font-size: clamp(1rem, 1.5vw, 2rem);
+}
+
+.contenedor-menu-principal {
+    z-index: 99;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:calc(100vh - 56px);
+    width: 80vw;
+    min-width: 210px;
+    max-width: 316px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: start;
+    background-color: var(--color-uno);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s;
+}
+
+#header-menu-mobile {
+    background-color: var(--color-destacable);
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+#cierre {
+    position: absolute;
+    top:5%;
+    right: -15%;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    text-align: center;
+}
+
+.buscar {
+    width: 0px;
+    height: 40px;
+    padding: 0 20px;
+    color:#000;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    transition: all .7s ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 99;
+}
+
+.desaparece {
+    display: none;
+}
+
+::placeholder {
+    color: #b3b3b3;
+}
+
+.input-extendido {
+    width: 100% !important; 
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.lupa {
+    cursor: pointer;
+    transition: 0.7s;
+}
+
+
+/* Carrito de compras mobile y desktop */
+
+#carrito {
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+
+#carrito div {
+    min-height: 20px;
+    min-width: 20px; /*Para que se adapte al tamaño que abarca el numero de digitos*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    z-index: 10;
+    background-color: #D58206;
+    padding: 0.2rem;
+}
+
+/*Propiedades para menú principal activan en mobile se modifican en desktop */
+
+.nav-principal {
+    flex: 1;
+    width: 100%;
+}
+
+.nav-principal > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;    
+}
+
+.nav-principal ul > li {
+    padding: 0.5rem;
+    border-bottom: 0.3px solid rgb(201, 200, 200);
+}
+
+.nav-principal ul > li a {
+    transition: all 0.5s;
+}
+
+.nav-principal ul > li a:hover {
+    font-weight: 500;
+}
+
+/* Boton cliente del menú principal desktop */
+
+#cliente > a:nth-child(1) {
+    background-color: var(--color-destacable);
+    border-radius: 5px;
+    padding: 5px 20px;
+    transition: all 0.5s;
+}
+
+#cliente > a:nth-child(1):hover, #cliente > a:nth-child(1):active{
+    font-weight: 300;
+}
+
+/* Propiedades para submenú cliente en menu desktop */
+
+.nav-contenedor-cliente {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: all .5s ease;
+}
+
+.mostrar-submenu-cliente {
+    visibility: visible;
+    opacity: 1;
+    height: 100%;
+
+}
+
+
+.nav-cliente {
+    z-index: 55;
+    position: absolute;
+    min-width: 250px;
+    width: 15%;
+    bottom:-65%;
+    right: 10%; ; /*padding del boton cliente*/
+    background-color: rgb(227, 223, 223);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column !important;
+    justify-content: space-evenly;
+    gap: 0 !important;
+    box-shadow: -0px 0px 10px 1px rgba(0, 0, 0, 0.337);
+}
+
+.nav-cliente li {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem !important;
+    border-bottom: 1px solid rgb(255, 255, 255) !important;
+    width: 100%;
+}
+
+.nav-cliente li:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.nav-cliente li:last-child {
+    border-bottom: none !important;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.nav-cliente li:hover {
+    background-color: rgb(208, 208, 208);
+}
+
+.nav-cliente li a {
+    color: var(--color-dos) !important;
+    font-weight: 300;
+}
+
+.nav-cliente li a:active, 
+.nav-cliente li a:hover {
+    font-weight: 300 !important;
+}
+
+.nav-cliente .user-login {
+    border-bottom: 1px solid rgb(255, 255, 255);
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 1rem;
+    gap:1rem;
+}
+
+.avatar-user {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: #4203ee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.nav-cliente .user-login h3 {
+    font-weight: 500;
+    display: flex;
+    flex-wrap: nowrap;
+}
+/* FIN Propiedades para submenú cliente en menu desktop */
+
+
+/* Propiedades para submenú productos en menu mobile */
+
+.link-productos {
+    position: relative;
+}
+
+.nav-contenedor-categorias {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 0.3s grid-template-rows;
+}
+
+.mostrar-categorias {
+    grid-template-rows: 1fr;
+}
+
+.nav-categorias {
+    overflow: hidden;
+}
+
+.nav-categorias > li {
+    border-bottom: none !important;
+}
+
+/* FIN Propiedades para submenú productos en menu mobile */
+
+
+/* Propiedades para footer de menú mobile */
+
+.login-register-contenedor {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    background-color: rgb(227, 223, 223);
+}
+
+.login-register-contenedor > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+}
+
+/* FIN Propiedades para footer de menú mobile */
+
+/* Propiedades para menú secundario de categorias de menú desktop */
+
+.nav-categorias-desktop {
+    z-index: 50;
+    width: 65%;
+    background-color: #000;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: -35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+
+.nav-categorias-desktop ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-categorias-desktop a {
+    color: var(--color-uno);
+}
+
+@media (min-width: 480px) {
+    .logo img {
+        width: 200px;
+    }
+}
+
+/* Fin Propiedades para menú secundario de categorias de menú desktop */
+
+@media (min-width: 768px) {
+    .contenedor-menu-general {
+        padding: 2rem 3rem;
+    }
+
+    .contenedor-menu-principal { 
+        width: 40vw;
+        height: calc(100vh - 56px);
+    }
+
+    .logo img {
+        width: 250px;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .logo img {
+        width: 300px;
+    }
+}
+
+@media (min-width: 1280px) {
+
+    /* Elementos que aparecen en desktop */
+    .nav-categorias-desktop, 
+    #cliente {
+        display: block;
+    }
+
+    .buscar {
+        border: #000 1px solid;
+    }
+
+    .input-extendido-dos { /* Aplico estilos al input cuando el mouse pasa o hace focus sobre #header-menu-mobile */
+        width: 35% !important; 
+        visibility: visible;
+        opacity: 1;
+        transition: all 0.5s;
+    }
+
+    #icono-hamburguesa,
+    #header-menu-mobile,
+    .login-register-contenedor,
+    #item-productos {
+        display: none;
+    }
+
+    .logo {
+        flex: 1; /* Para que tire el menú de navegación hacia la derecha */
+    }
+
+    .contenedor-menu-general{
+        padding: 2.2rem 2rem;
+        gap: 1.5rem;
+    }
+
+    .contenedor-menu-principal {
+        position: initial;
+        transform: initial;
+        height: initial;
+        width: initial;
+        min-width: initial;
+        max-width: initial;
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.2s, visibility 0.2s;
+        box-shadow: none;
+    }
+
+    .menu-oculto {
+        visibility: hidden;
+        opacity: 0;
+        
+    }
+
+    .nav-principal {
+        flex: initial; /* Restablecer flex a su valor inicial */
+        width: initial; /* Restablecer width a su valor inicial */
+    }
+
+    .nav-principal ul {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .nav-principal ul > li {
+        border-bottom: initial;
+    }
+
+    .estado {
+        display: block !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    .logo img {
+        width: 350px;
+    }
+}

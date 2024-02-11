@@ -1,0 +1,25 @@
+.btn-1 {
+    border: none;
+    text-align: center;
+    border-radius: 5px 0 5px 0;
+    width: 25%;
+    height: 12%;
+    background-color: var(--color-destacable-dos);
+    color: var(--color-uno);
+    font-size: clamp(0.8125rem, 1.2vw, 2rem);
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .btn-1 {
+        width: 15%;
+        height: 7%;
+    }
+}
+
+@media (min-width: 1280px) {
+   .btn-1 {
+       width: 12%;
+       height: 6%;   
+   }
+}

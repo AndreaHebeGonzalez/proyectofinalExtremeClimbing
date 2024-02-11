@@ -1,4 +1,3 @@
-const sesion = require('express-session');
 
 const sesionConfig = {
     secret: "shhhhh",

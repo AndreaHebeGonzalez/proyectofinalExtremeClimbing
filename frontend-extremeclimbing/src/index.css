@@ -45,10 +45,8 @@ html { /* definiendo un comportamiento global para toda la página. Incluye conf
 }
 
 body {
-    background-color: var(--color-uno);
     font-family: var(--fuente-parrafos);
     position: relative;
-    
 }
 
 h1,
@@ -58,67 +56,14 @@ h4,
 h5 {
     font-style: normal;
     font-weight: 300;
-    font-family: var(--fuente-primaria); 
-    color: var(--color-dos);
+    font-family: var(--fuente-primaria);  
 }
 
-h1 {
-    font-size: clamp(2.4rem, 4vw, 6rem);
-}
-
-h2 {
-    font-size: clamp(1.3rem, 3.5vw, 3.8rem);
-}
-
-h3 {
-    font-size: clamp(1rem, 3.4vw , 3.8rem); 
-}
-
-h4 {
-    font-size: clamp(0.9rem, 1.4vw, 2.5rem);
-}
-
-h5 {
-    font-size: clamp(0.9rem, 1.2vw, 2.1rem);
-}
-
-p {
-    font-family: var(--fuente-parrafos); 
-    font-size: clamp(0.9rem, 1.2vw, 1.6rem); 
-}
-
-a {
-    
-    font-size: clamp(0.9rem, 1.2vw, 1.6rem);
-    
-}
-
-.h2forms {
+.titulo h2 {
     font-size: clamp(1.5rem, 2.5vw, 3.5rem);
+    color: var(--color-dos);
+    margin-bottom: 0.2rem;  
 }
-
-@media (min-width: 1024px) {
-    h2 {
-        font-size: clamp(1.3rem, 3.5vw, 4rem);
-    } 
-}
-
-@media (min-width: 1280px) {
-    h2 {
-        font-size: clamp(1.3rem, 3vw, 4rem);
-    }  
-}
-
-@media (min-width: 1440px) {
-    h2 {
-        font-size: clamp(1.3rem, 2.5vw, 3.8rem);
-    }  
-
-    h3 {
-        font-size: clamp(1rem, 2vw, 3.5rem); 
-    }
-}
-
 
 
 /*--------------------------------------------------------------
@@ -158,7 +103,7 @@ a:hover {
 }
 
 .icono2 {
-    width: 30px;
+    width: 25px;
     height: auto;
 }
 /*FIN Medidas para íconos*/
@@ -167,17 +112,6 @@ input, button {
     outline: none;
 }
 
-.btn-1 {
-    border: none;
-    text-align: center;
-    border-radius: 5px 0 5px 0;
-    width: 25%;
-    height: 12%;
-    background-color: var(--color-destacable-dos);
-    color: var(--color-uno);
-    font-size: clamp(0.8125rem, 1.2vw, 2rem);
-    cursor: pointer;
-}
 
 header {
     background-color: var(--color-uno);

@@ -43,18 +43,23 @@ const validarFormatoNacimiento = body('nacimiento')
 
 const validarEdad = body('nacimiento') 
     .custom((value) => {
-        const nacimiento = new Date(value);
-        console.log(nacimiento);
-        const fechaActual = new Date();
-        console.log(fechaActual);
-        const edad = fechaActual.getFullYear() - nacimiento.getFullYear();
-        console.log(edad);
-        if (edad > 18) {
-            return true
-        } else {
-            //Capturo la excepción y genero un objeto Error para que detenga la ejecucion del codigo
-            throw new Error('La persona debe ser mayor de 18 años');
-        }; 
+        try {
+            const nacimiento = new Date(value);
+            console.log(nacimiento);
+            const fechaActual = new Date();
+            console.log(fechaActual);
+            const edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+            console.log(edad);
+            if (edad > 18) {
+                return true
+            } else {
+                //Capturo la excepción y genero un objeto Error para que detenga la ejecucion del codigo
+                throw new Error('La persona debe ser mayor de 18 años');
+            }; 
+        } catch (error) {
+            console.error('Error al procesar la fecha de nacimiento:', error);
+        }
+        
     });
 
     const validarEmail = body('email')

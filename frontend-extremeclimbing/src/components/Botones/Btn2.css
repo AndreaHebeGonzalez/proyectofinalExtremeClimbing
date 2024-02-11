@@ -1,0 +1,15 @@
+.btn-2 {
+    font-size: clamp(0.8125em, 1.2vw, 2em);
+    border: none;
+    border-radius: 3%;
+    background-color: #000;
+    color: var(--color-uno);
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+.btn-2:hover {
+    background-color: transparent;
+    border: #000 1px solid;
+    color: #000;
+}
