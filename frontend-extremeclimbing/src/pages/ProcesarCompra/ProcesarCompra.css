@@ -106,19 +106,60 @@
 }
 
 .btn-estilo2 {
-    font-size: clamp(1rem, 1.3vw, 2rem);
+    font-size: clamp(0.8rem, 1.2vw, 2rem);
     border: none;
     border-radius: 5px;
     background-color: #000;
     color: var(--color-uno);
     padding: 5px 20px;
     cursor: pointer;
+    max-height: 42px;
+    transition: all 0.3s;
 }
+
+.btn-estilo2:active {
+    background-color: #fefefe;
+}
+
+.mensaje {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mensaje span {
+    font-size: clamp(0.9rem, 1.5vw, 2.5rem);
+    color: var(--color-dos);
+    animation: deslizaDesdeDerecha 0.5s ease forwards;
+}
+
+@keyframes deslizaDesdeDerecha {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.mensaje small {
+    font-size: clamp(1.1rem, 1.2vw, 1.8rem);
+    color: darkred;
+} 
+
+
 
 
 @media (min-width: 480px ) {
     .contenedor-pages {
         margin: 5vw 15vw;
+    }
+    .mensaje span {
+        font-size: clamp(1.1rem, 1.8vw, 2.5rem);
     }
 }
 
@@ -151,13 +192,13 @@
     .contenedor-pages h4 {
         font-size: clamp(1rem, 1.35vw, 2.5rem);
     }
-
+    .mensaje span {
+        font-size: clamp(1.1rem, 1.5vw, 2.5rem);
+    }
 }
 
 @media (min-width: 1280px ) {
-    .contenedor-pages {
-        margin: 5vw 28vw;
-    }
+
     .contenedor-pages h2 {
         font-size: clamp(1.5rem, 2.4vw, 3.3rem); 
     }
@@ -173,7 +214,7 @@
 
 @media (min-width: 1440px ) {
     .contenedor-pages {
-        margin: 5vw 30vw;
+        margin: 5vw 27vw;
     }
 
     .contenedor-pages h2 {
@@ -186,6 +227,13 @@
 
     .contenedor-pages h4 {
         font-size: clamp(1rem, 1vw, 2.5rem);
+    }
+    .mensaje span {
+        font-size: clamp(1.1rem, 1.2vw, 2.5rem);
+    }
+
+    .btn-estilo2 {
+        font-size: clamp(0.8rem, 1.1vw, 2rem);
     }
 
 }

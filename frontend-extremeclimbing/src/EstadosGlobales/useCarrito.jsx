@@ -9,7 +9,7 @@ export const useCarrito = create((set) => ({
             const filtrarProductos = productosCarrito.filter((p, i) => i !== index);
             return { productosCarrito: filtrarProductos };
         }),
-    actualizarCarrito: (nuevosProductos) => 
+    actualizarCarrito: (nuevosProductos = []) => 
         set({productosCarrito: nuevosProductos})
 }));
 

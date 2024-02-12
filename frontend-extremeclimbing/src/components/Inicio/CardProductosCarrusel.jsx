@@ -10,7 +10,7 @@ const CardProductosCarrusel = ({ producto, refHijo, obtenerAncho, obtuveAnchoCar
     const agregarProducto = useCarrito((state) => state.agregarProducto);
     const productosCarrito = useCarrito((state) => state.productosCarrito);
     const abrirCarrito = useAbrirCarrito((state) => state.abrirCarrito);
-
+    const cerrarCarrito = useAbrirCarrito((state) => state. cerrarCarrito);
     const carritoActualLS = JSON.parse(localStorage.getItem('carrito')) || [];
 
     useEffect(() => {
@@ -37,6 +37,10 @@ const CardProductosCarrusel = ({ producto, refHijo, obtenerAncho, obtuveAnchoCar
             //Agrego producto al LS:
             carritoActualLS.push({ urlImg, nombre: producto.nombre, marca: producto.marca, precio: producto.precio, id: producto.id, cantidadProducto: 1 });
             localStorage.setItem('carrito', JSON.stringify(carritoActualLS));
+            abrirCarrito();
+			setTimeout(() => {
+				cerrarCarrito();
+			}, 2500)
         };
 	};
     

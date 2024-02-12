@@ -20,18 +20,44 @@ import NoEncontrado from './pages/NoEncontrado/NoEncontrado'
 import Cart from './components/Cart/Cart'
 import { useAuth } from './EstadosGlobales/useAuth'
 import { useCarrito } from './EstadosGlobales/useCarrito' 
+import Escalada from './pages/Productos/Escalada'
+import Trekking from './pages/Productos/Trekking'
+import Camping from './pages/Productos/Camping'
+
+
 
 
 const App = () => {
 	const login = useAuth((state) => state.login);
 	const actualizarCarrito = useCarrito((state) => state.actualizarCarrito);
+	
+	
 
-    useEffect(() => {
-        let datosSesion = localStorage.getItem('userData');
+    useEffect( () => {
+		let datosSesion = localStorage.getItem('userData');
         if(datosSesion) {
             datosSesion = JSON.parse(datosSesion);
             login(datosSesion)
-        };
+		};
+			/* try {
+				const respuesta = await fetch("http://localhost:8000/usuarios/perfil", {
+					
+				});
+				if(respuesta.ok) {
+					const datosRespuesta = await respuesta.json();
+					const userData = datosRespuesta.dataUsuario;
+					localStorage.setItem('userData', JSON.stringify(userData));
+					login(userData);
+				} else {
+					if(respuesta.status == 401) {
+						console.log('Se llego hasta aca y no se guardo la sesion')
+						logout();
+						localStorage.removeItem('userData');
+					};
+				};
+			} catch (error) {
+				console.error('No pudo realizarse la solicitud al servidor', error);
+			}; */
 		let carritoActualLS = localStorage.getItem('carrito');
 		if(carritoActualLS) {
 			carritoActualLS = JSON.parse(carritoActualLS);
@@ -50,6 +76,9 @@ const App = () => {
 				<Route path="/" element= {<Inicio />} /> {/* A este componente se le pasan dos props: path y element, en path va la ruta asociada al componente pages, y en element va el componente pages */}
 				<Route path="/nosotros" element= {<Nosotros />} />
 				<Route path="/productos" element= {<Productos />} />
+				<Route path="/productos-camping" element= {<Camping />} />
+				<Route path="/productos-escalada" element= {<Escalada />} />
+				<Route path="/productos-trekking" element= {<Trekking />} />
 				<Route path="/detalle-producto/:id" element= {<DetalleProducto />} />
 				<Route path="/contacto" element= {<Contacto />} />
 				<Route path="/registro" element= {<Registro />} />

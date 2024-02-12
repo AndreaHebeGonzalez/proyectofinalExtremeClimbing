@@ -8,11 +8,11 @@
 }
 
 .fondoPages h2 {
-    font-size: clamp(1.3rem, 3vw, 3.8rem);
+    font-size: clamp(1.3rem, 2.5vw, 3.8rem);
 }
 
 .fondoPages h3 {
-    font-size: clamp(1rem, 2.8vw , 3.4rem); 
+    font-size: clamp(1rem, 2.3vw , 3.2rem); 
 }
 
 .fondoPages h4 {
@@ -102,6 +102,7 @@ main {
     left: 0;
     pointer-events: none;
     transition: 0.7s ease;
+    width: 100%;
 }
 
 #categorias .cat-1:hover::before {
@@ -200,7 +201,7 @@ main {
     }
 
     #categorias .cat-2 h2 {
-        top: 12%;
+        top: 18%;
     }
 
     /*========FIN Seccion categorias========================*/

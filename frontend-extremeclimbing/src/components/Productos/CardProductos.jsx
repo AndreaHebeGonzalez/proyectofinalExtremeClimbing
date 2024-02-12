@@ -11,8 +11,12 @@ const CardProductos = ({ producto }) => {
     const agregarProducto = useCarrito((state) => state.agregarProducto);
     const productosCarrito = useCarrito((state) => state.productosCarrito);
     const abrirCarrito = useAbrirCarrito((state) => state.abrirCarrito);
+    const cerrarCarrito = useAbrirCarrito((state) => state. cerrarCarrito);
+    
     //constante para guardar el carrito almacenado en el local storage
     const carritoActualLS = JSON.parse(localStorage.getItem('carrito')) || [];
+
+	
 
     const urlbase = "http://localhost:8000/";
     const urlCompleta= `${urlbase}${producto.imagenes[0]}`;
@@ -34,11 +38,15 @@ const CardProductos = ({ producto }) => {
             //Agrego producto al LS:
 			carritoActualLS.push({ urlImg, nombre: producto.nombre, marca: producto.marca, precio: producto.precio, id: producto.id, cantidadProducto: 1 });
 			localStorage.setItem('carrito', JSON.stringify(carritoActualLS));
+            abrirCarrito();
+			setTimeout(() => {
+				cerrarCarrito();
+			}, 2500)
         };
 	};
 
     return (
-        <article key= {producto.id} className="producto" style={{maxWidth: "250px"}}>
+        <article key= {producto.id} className="producto ancho-producto" style={{maxWidth: "255px"}}>
             <div className="row-img-iconos">
                 {productoPresente === false && <img style={{ alignSelf: 'start'}} className="iconos-respons icono-sumar-a-carrito" onClick={handleAgregarProducto} src="../../public/imagenes/iconos/sumar-a-carrito.png" alt="Agregalo al carrito"/>}
                 {productoPresente && <img style={{ alignSelf: 'start'}} className="iconos-respons icono-sumar-a-carrito" onClick={() => {abrirCarrito()}} src="../../public/imagenes/iconos/carrito.png" alt="Ver carrito"/>}

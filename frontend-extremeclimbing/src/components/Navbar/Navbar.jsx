@@ -93,7 +93,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="logo">
-                    <img src="../../public/imagenes/logo2.png" alt="Logo de Extreme Climbing"/>
+                    <img src="../../public/imagenes/logo3.png" alt="Logo de Extreme Climbing"/>
                 </div>
 
                 {/* <!-- EMPIEZA menu de navegacion --> */}
@@ -131,7 +131,7 @@ const Navbar = () => {
                             </li>
 
                             <li id="item-productos"><Link to="/productos" onClick= {handleMostrarCategorias}>Productos</Link> {/* <!-- Visible en version mobile --> */}
-                                <div className= {`nav-contenedor-categorias ${mostrarCategorias ? "mostrar-categorias" : ""}`}>
+                                {/* <div className= {`nav-contenedor-categorias ${mostrarCategorias ? "mostrar-categorias" : ""}`}>
                                     <ul className="nav-categorias">
                                         <li className="item-categoria">
                                             <Link to="/" className="link-nav">Escalada</Link>
@@ -143,7 +143,7 @@ const Navbar = () => {
                                             <Link to="/" className="link-nav">Trekking</Link>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> */}
                             </li>
 
                             <li className="item-nav">
@@ -249,16 +249,23 @@ const Navbar = () => {
                 <nav className="nav-categorias-desktop"> 
                     
                     <ul>
-                        <img className="iconos-respons" src="../../public/imagenes/iconos/home-blanco.png" alt="inicio"/>
-
+                        <Link to="/">
+                            <img className="iconos-respons" src="../../public/imagenes/iconos/home-blanco.png" alt="inicio"/>
+                        </Link>
                         <li className="item-categoria">
-                            <a href="#" className="link-nav">ESCALADA</a>
+                            <Link to="/productos-escalada" className="link-nav">
+                                ESCALADA
+                            </Link>
                         </li>
                         <li className="item-categoria">
-                            <a href="#" className="link-nav">CAMPING</a>
+                            <Link to="/productos-camping" className="link-nav">
+                                CAMPING
+                            </Link>
                         </li>
                         <li className="item-categoria">
-                            <a href="#" className="link-nav">TREKKING</a>
+                            <Link to="/productos-trekking" className="link-nav">
+                                TREKKING
+                            </Link>
                         </li>
                     </ul>
 

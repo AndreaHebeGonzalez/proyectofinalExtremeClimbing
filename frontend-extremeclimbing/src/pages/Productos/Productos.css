@@ -2,8 +2,9 @@
     margin: 5vw 1vw !important;
 }
 
-.contenedor {
+.contenedor-prod-row {
     position: relative;
+
 }
 
 .cierre-carrito {
@@ -12,11 +13,19 @@
 }
 
 .contenedor-productos {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 2rem 2rem;
+    gap:  1.5rem;
     justify-content: center;
+}
+
+.contenedor-filtro-productos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
 }
 
 .contenedor-filtro {
@@ -25,8 +34,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    padding: 1rem;
-    width: 100%;
+    padding: 1rem 0.5rem;
+    width: 30vw;
 }
 
 .contenedor-titulo-filtro {
@@ -35,11 +44,13 @@
     align-items: center;
     justify-content: center;
     width: 85%;
+    align-self: start;
 }
 .contenedor-titulo-filtro h3 {
     font-size: clamp(1.15rem, 2.5vw, 3.1rem);
     font-family: var(--fuente-primaria);
     font-weight: 400;
+    color: var(--color-dos);
 }
 
 .contenedor-filtro label {
@@ -48,18 +59,35 @@
     font-size: clamp(0.9rem, 1.2vw, 1.6rem); 
 }
 
-@media (min-width: 480px) {
-    .contenedor-row-filtro {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 1rem;
-    }
+.contenedor-filtro input {
+    width: 100% !important;
+}
+.contenedor-row-filtro {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    gap:0.3rem;
+}
 
-    .contenedor-row-filtro input,
-    .contenedor-row-filtro select {
-        width: 50%;
-        height: 2rem
+.ancho-producto {
+    min-width: 200px;
+    width: 38vw;
+}
+
+@media (min-width: 480px) {
+
+    .contenedor-filtro {
+        width: 26vw;
+    }
+}
+
+@media (min-width: 601px) {
+    .ancho-producto {
+        min-width: 200px;
+        width: 30vw;
+    }
+    .contenedor-filtro {
+        width: 24vw;
     }
 }
 
@@ -67,13 +95,18 @@
     .contenedor-filtro h3 {
         font-size: clamp(1.15rem, 2.3vw, 3.1rem);
     }
+    .ancho-producto {
+        min-width: 200px;
+        width: 22vw;
+    }
+    .contenedor-filtro {
+        width: 18vw;
+    }
 }
 
 @media (min-width: 1024px) {
-    .contenedor-filtro {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
+    .ancho {
+        max-width: 150px;
     }
     .contenedor-titulo-filtro h3 {
         font-size: clamp(1.1rem, 1.8vw, 3rem);

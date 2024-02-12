@@ -238,6 +238,10 @@
         .contenedor-general-carrusel { /*Con javaScript hago que el alto de este contenedor se adapte al alto del contenedor de los articulos*/
             margin: 2rem 0;
         }
+
+        .titulo {
+            padding-bottom: 3.5rem;
+        }
     }
     
     @media (min-width: 1440px) {

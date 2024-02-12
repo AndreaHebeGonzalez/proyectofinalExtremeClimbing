@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import ProductoCarrito from '../../components/ProcesarCompra/ProductoCarrito'
 import './ProcesarCompra.css'
-import { Link } from 'react-router-dom'
+import { Link, json } from 'react-router-dom'
 import { useCarrito } from '../../EstadosGlobales/useCarrito'
 
 const ProcesarCompra = () => {
@@ -11,6 +11,17 @@ const ProcesarCompra = () => {
     const eliminarProducto = useCarrito((state) => state.eliminarProducto);
     const actualizarCarrito = useCarrito((state) => state.actualizarCarrito);
     const [formEnviado, setFormEnviado] = useState(false);
+    const [sesionIniciada, setSesionIniciada] = useState(null);
+    
+    const [rol, setRol] = useState(null);
+
+    useEffect(() => {
+        let userData = localStorage.getItem('userData');
+        if (userData) {
+            userData = JSON.parse(userData);
+            setRol(userData.rol);
+        };
+    }, []);
 
     const handleSumarUno = (index) => {
         const nuevosProductos = [...productosCarrito];
@@ -33,26 +44,43 @@ const ProcesarCompra = () => {
     const handleFinalizarCompra = async () => {
         const ordenCompra = productosCarrito.map((producto) => ({
             productoId: producto.id,
-            precioUnitario: producto.precio,
+            precioUnitario: Number(producto.precio),
             cantidad: producto.cantidadProducto
         }));
-        try {
-            const respuesta = await fetch("http://localhost:8000/ordenes-de-compras", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(ordenCompra),
-            });
-            if(respuesta.ok) {
-                setFormEnviado(true);
-            } else {
-                const datosError= await respuesta.json()
-                console.error('Hubo un problema al enviar la orden', datosError)
+        const userData = localStorage.getItem('userData');
+        if (userData) {
+            const parseUserData = JSON.parse(userData);
+            const idUsuario = parseUserData.id;
+            const dataOrden = {
+                idUsuario,
+                ordenCompra
             };
-        } catch (error) {
-            console.error('Error:', error);
-        };
+            console.log(dataOrden);
+            try {
+                const respuesta = await fetch("http://localhost:8000/ordenes-de-compras", {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataOrden),
+                });
+                if(respuesta.ok) {
+                    console.log('Orden enviada con éxito');
+                    actualizarCarrito();
+                    localStorage.removeItem('carrito');
+                    setFormEnviado(true);
+                } else {
+                    const datosError= await respuesta.json()
+                    console.error('Hubo un problema al enviar la orden', datosError)
+                };
+            } catch (error) {
+                console.error('Error:', error);
+            };
+        } else {
+            console.error('Debe iniciar sesion para realizar la orden de compra');
+            setSesionIniciada('no');
+        };        
     };
 
     return (
@@ -95,12 +123,18 @@ const ProcesarCompra = () => {
                         <h4>{obtenerSubTotal() + costoDeEnvio}</h4>
                     </div>{/* En fila */}
                 </div>
-
-                <button className='btn-estilo2' type='submit' style={{ alignSelf: 'flex-start'}} onClick={(e)=> {
-                    e.preventDefault();
-                    handleFinalizarCompra()}}>
-                    Finalizar compra
-                </button>
+                <div className='mensaje'>
+                    <button className='btn-estilo2' type='submit' disabled={rol && rol==='admin'} onClick={(e)=> {
+                        e.preventDefault();
+                        handleFinalizarCompra()}}>
+                        Finalizar compra
+                    </button>
+                    {sesionIniciada === 'no' && <small>Debe iniciar sesion para enviar la orden de compra</small>}
+                    {rol && rol==='admin' && <small>No puede realizar ordenes de compra como administrador</small>}
+                    {formEnviado && 
+                    
+                    <span>Recibimos tu pedido. ¡Gracias por tu compra!</span>}
+                </div>
             </div>
         </section>
     )

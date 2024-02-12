@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import './DetalleProducto.css'
 import Imagenes from '../../components/DetallesProductos/Imagenes';
 import { useCarrito } from '../../EstadosGlobales/useCarrito';
+import { useAbrirCarrito } from '../../EstadosGlobales/useAbrirCarrito';
 
 const DetalleProducto = () => {
 	const [producto, setProducto] = useState([]);
@@ -14,6 +15,9 @@ const DetalleProducto = () => {
 	const productosCarrito = useCarrito((state) => state.productosCarrito);
 
 	const carritoActualLS = JSON.parse(localStorage.getItem('carrito')) || [];
+
+	const abrirCarrito = useAbrirCarrito((state) => state.abrirCarrito);
+	const cerrarCarrito = useAbrirCarrito((state) => state. cerrarCarrito);
 
 	const { id } = useParams();
     
@@ -68,6 +72,10 @@ const DetalleProducto = () => {
 			//Agrego producto al LS:
 			carritoActualLS.push({ urlImg, nombre: producto.nombre, marca: producto.marca, precio: producto.precio, id: producto.id, cantidadProducto: 1 });
 			localStorage.setItem('carrito', JSON.stringify(carritoActualLS));
+			abrirCarrito();
+			setTimeout(() => {
+				cerrarCarrito();
+			}, 2500)
 		} ;
 	};
 

@@ -20,10 +20,6 @@ const Login = () => {
     //Para redireccionamiento:
     const navegar = useNavigate();
 
-    useEffect(() => {
-        console.log('El usuario fue logueado y sus datos son:', user);
-    }, [user]);
-
     const handleEmail= (valor) => {
         setEmail(valor);
         setFormData({

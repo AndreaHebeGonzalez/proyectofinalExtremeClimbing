@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
-import Portada from '../../components/Inicio/Portada'
 import './Inicio.css'
 import CarruselMarcas from '../../components/Inicio/CarruselMarcas'
 import Banner1 from '../../components/Inicio/Banner1'
-import CarruselDestacados from '../../components/Inicio/CarruselDestacados'
+import Destacados from '../../components/Inicio/Destacados'
+import Slider  from '../../components/Inicio/Slider'
 
 const Inicio = () => {
     
     return (
         <div className="fondoPages">  
-            <Portada />
+            <Slider />
             {/* <!-- Fin Portada --> */}
 
             {/* <!-- Seccion categorias --> */}
@@ -31,11 +31,9 @@ const Inicio = () => {
                 </div>
             </section>
             {/* <!-- FIN Seccion categorias --> */}
-            <div style={{display:'flex', flexDirection:'column', justifyContent: 'center', alignItems:'center' }}>
-                <CarruselDestacados titulo= {'Extreme Climbing'} />
-            </div>
             
-
+            
+            <Destacados />
             {/* <!-- Seccion bunner --> */}
             <Banner1 />
             {/* <!-- FIN Seccion bunner --> */}
