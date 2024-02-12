@@ -91,11 +91,7 @@ const validarEdad = body('nacimiento') //!ESTE VALIDADOR GENERA ERROR DE 422 Unp
             res.redirect('/login');
         };
     };
-/*
-Aclaracion:
-Si puedo garantizar que req.session.idUsuario siempre está correctamente configurado y que solo los usuarios autenticados pueden llegar a la ruta del controlador de actualización de contraseña, es posible que no necesites un middleware de autenticación adicional en ese controlador específico.
-Sin embargo, si hay otras rutas o controladores en tu aplicación que requieren autenticación, o si quieres centralizar la lógica de autenticación en un solo middleware para mantener la consistencia en toda la aplicación, entonces tener un middleware de autenticación general podría ser beneficioso.
-*/
+
 module.exports = {
     validarNombre,
     validarApellido,
@@ -112,43 +108,3 @@ module.exports = {
     validarAutenticacion
 };
 
-/*
-formato ISO 8601:
-
-El formato ISO 8601 es un estándar internacional para la representación de fechas y horas. Define varios formatos para representar fechas y horas de manera legible y consistente. El formato básico para fechas en ISO 8601 es el siguiente:
-
-YYYY-MM-DD
-Donde:
-
-YYYY: Representa el año con cuatro dígitos (por ejemplo, 2022).
-MM: Representa el mes con dos dígitos, comenzando desde 01 para enero hasta 12 para diciembre.
-DD: Representa el día del mes con dos dígitos, comenzando desde 01 hasta 31.
-Este formato proporciona una representación clara y ordenada de la fecha, y es ampliamente utilizado en sistemas informáticos y en la comunicación de fechas en formatos de intercambio de datos, como en JSON, XML, y otros.
-
-Ejemplos de fechas en formato ISO 8601:
-
-2022-01-15: 15 de enero de 2022.
-1990-12-31: 31 de diciembre de 1990.
-
-Cuando hablamos de ISO 8601 en el contexto de fechas y horas, también puede incluir información sobre la hora del día, la zona horaria, y otros detalles. Por ejemplo, una representación completa de fecha y hora podría ser:
-
-YYYY-MM-DDTHH:mm:ssZ
-
-Donde:
-
-THH:mm:ss: Representa la hora, los minutos y los segundos (por ejemplo, 12:30:45).
-Z: Indica que la hora está en UTC (tiempo coordinado universal).
-
-En el input de tipo date:
-Cuando utilizas un elemento <input> con el atributo type="date" en HTML y un usuario selecciona una fecha, el valor devuelto está en formato ISO 8601. El formato específico es el siguiente:
-YYYY-MM-DD
-
-En MySQL con tipo DATE:
-Cuando defines un campo en MySQL con el tipo de dato DATE, el formato en el que se almacena la fecha es "YYYY-MM-DD". Este formato es compatible con el formato ISO 8601 para fechas.
-
-Manejo de fechas con métodos nativos de JS:
-
-Metodo new Date()
-
-Metodo getFullYear()
-*/

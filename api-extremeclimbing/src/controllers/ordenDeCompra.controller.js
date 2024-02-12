@@ -42,14 +42,15 @@ const obtenerOrdenPorIdUsuario = async (req, res) => {//Buscar orden de compra i
     };
 };
 
-const cargarOrden = async (req, res) => { //recibo del front un array de objetos, cada objeto contiene, id_producto, cantidad, precioUnitario
-
-    try {
-        const idUsuario = req.session.idUsuario;
-        const detallesOrden = req.body;
+const cargarOrden = async (req, res) => { 
+    try {    
+        const dataOrden = req.body;
+        console.log(dataOrden);
+        const idUsuario = dataOrden.idUsuario;
+        const detallesOrden = dataOrden.ordenCompra;
         console.log(detallesOrden);
-        const detallesConCostoParcial = detallesOrden.map((detalle) => ({ //se usan parentesis encerrando las llaves para devolver un objeto literal, si no se utilizaran js podria interpretar el inicio de un bloque, se evita ambiguedad sintactica 
-            ...detallesOrden,
+        const detallesConCostoParcial = detallesOrden.map((detalle) => ({
+            ...detalle,
             costoParcial: detalle.precioUnitario * detalle.cantidad,
         }));
         const precioTotal = detallesConCostoParcial.reduce((precioTotal, detalleOrden) => precioTotal + detalleOrden.costoParcial, 0);
@@ -102,19 +103,3 @@ module.exports = {
     eliminarOrdenPorId,
 };
 
-/*
-
-Persistir el carrito solo después de la confirmación:
-
-Ventajas:
-
-Datos más consistentes: La base de datos solo contendrá datos confirmados, lo que puede simplificar el manejo de la base de datos y reducir la complejidad de la lógica de negocio.
-Menos limpieza de datos: No hay necesidad de lidiar con carritos no confirmados o abandonados en la base de datos.
-Desventajas:
-
-Experiencia del usuario menos flexible: Los usuarios no pueden volver y encontrar los productos que agregaron anteriormente si abandonan la página antes de confirmar la compra.
-Consideraciones adicionales:
-
-Seguridad: Si el carrito contiene información sensible y confidencial, como detalles de pago, puede ser más seguro esperar hasta que se confirme la orden antes de persistir en la base de datos.
-Requerimientos de negocio: Algunos negocios pueden preferir una estrategia sobre la otra según sus necesidades y procesos comerciales específicos.
-*/

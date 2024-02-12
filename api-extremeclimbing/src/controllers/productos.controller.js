@@ -139,30 +139,7 @@ const buscarPorId = async (req, res) => {
     }
 };
 
-/*
-Tratamiento de los errores: 
 
-En el bloque de código que proporcionaste, existen dos posibles respuestas de error distintas:
-
-Error 404 - Recurso no encontrado:
-
-Si la búsqueda del producto por el ID no devuelve ningún resultado (producto es null), el controlador responde con un estado HTTP 404 y un mensaje indicando que el recurso no fue encontrado.
-
-
-!return res.status(404).json({msg: 'recurso no encontrado'});
-!Error 500 - Error interno del servidor:
-
-Si ocurre un error durante la búsqueda del producto (por ejemplo, un error de base de datos), el controlador captura la excepción, imprime un mensaje de error en la consola y responde con un estado HTTP 500 y un mensaje indicando que hubo un error interno del servidor.
-
-!return res.status(500).json({msg: 'Error interno del servidor'});
-!El objetivo es proporcionar respuestas significativas y adecuadas a diferentes escenarios:
-
-Si el producto no se encuentra, un estado 404 indica que el recurso solicitado no está presente.
-Si hay un error interno del servidor, un estado 500 indica un problema que impide que se complete la solicitud correctamente.
-Ambas respuestas son correctas en sus respectivos contextos. La elección entre 404 y 500 depende de la naturaleza del error y del comportamiento deseado en tu aplicación. En general, es una buena práctica proporcionar respuestas HTTP específicas y significativas según la situación.
-*/
-
-//Creo controlador para actualizar un producto referenciado por id y la gestion de imagenes para la actualizacion de este campo para un producto se hace en una ruta aparte: /imagenes e incluye la posibilidad de agregar nuevas imagenes o de borrar imagenes existentes
 const actualizar = async (req, res) => {
     const id = Number(req.params.id);
     const { nombre, marca, precio, cantidad, categoria, subcategoriaUno, subcategoriaDos, subcategoriaTres, descripcion, caracteristicas, infoTecnica  } = req.body;
@@ -324,73 +301,3 @@ module.exports = {
     categories,
 }
 
-
-//Para crear un producto cargando los datos correspondientes en la tabla 'productos' y al mismo tiempo cargar las url de las imaganes de ese mismo producto en la tabla 'imagenes', se utiliza una funcionalidad de sequelice, las transacciones:
-/*
-TRANSACCIONES:
-funcionalidad de transacciones en Sequelize, un ORM (Object-Relational Mapping)
-
-Una transacción es una secuencia de una o más operaciones de base de datos que se deben ejecutar como una unidad atómica. Esto significa que todas las operaciones en la transacción se realizan con éxito o se deshacen en caso de error, garantizando la consistencia de la base de datos.
-
-{ transaction } se utiliza para indicar a Sequelize que debe realizar las operaciones dentro de la transacción proporcionada. 
-
-1-Inicio de la transacción:
-Se inicia una nueva transacción utilizando el método transaction del objeto bd (instancia de Sequelize). Este método devuelve una instancia de transacción que se almacena en la variable transaction.
-
-const transaction = await bd.transaction();
-
-2- Operaciones dentro de la transaccion:
-La creación de un nuevo producto (Productos.create()) se realiza dentro de la transacción. La opción { transaction } se pasa como un objeto de opciones, indicando que esta operación debe formar parte de la transacción.
-
-const nuevoProducto = await Productos.create({
-    // Propiedades del producto
-}
-
-Lo mismo ocurre para la creación de imágenes asociadas al producto. Todas estas operaciones (creación de producto y creación de imágenes) deben realizarse como una unidad atómica.
-
-await Imagenes.create({
-    // Propiedades de la imagen
-}, { transaction });
-
-3-Confirmación o reversión de la transacción:
-Si todas las operaciones dentro de la transacción se completan con éxito, se utiliza transaction.commit() para confirmar la transacción. Si ocurre algún error, puedes utilizar transaction.rollback() para deshacer todas las operaciones realizadas dentro de la transacción.
-
-await transaction.commit(); // Confirma la transacción
-
-*/
-
-/*
-Promise.all:
-es una construcción que toma un array de promesas y devuelve una nueva promesa que se resuelve cuando todas las promesas en el array se han resuelto o alguna de ellas es rechazada. Es especialmente útil cuando tienes un array de operaciones asíncronas que quieres ejecutar en paralelo.
-
-Espera de todas las promesas con await:
-Al utilizar await con Promise.all se busca esperar a que todas las operaciones asíncronas dentro del array se completen antes de continuar con la ejecución del código.
-
-await Promise.all(..)
-
-Ejemplo:
-
-await Promise.all(urlImagenes.map(async (url) => {
-    await Imagenes.create({
-        url,
-        producto_id: nuevoProducto.id,
-    });
-}));
-
-En: 
-urlImagenes.map(async (url) => {
-    // ...
-})
-
-Se itera sobre cada elemento del array de urls y devuelve un nuevo array con los resultados de aplicar una función a cada elemento. En este caso, se aplica una función asíncrona a cada URL en urlImagenes.
-
-Se utiliza Imagenes.create para crear una nueva instancia en la tabla Imagenes. Cada llamada a Imagenes.create crea una nueva imagen asociada al producto recién creado (nuevoProducto.id) con la URL proporcionada.
-
-*/
-
-
-/*
-//! Path y fs
-path y fs son dos módulos fundamentales que proporcionan funcionalidades para trabajar con rutas de archivos y realizar operaciones en el sistema de archivos, respectivamente.
-HACER APUNTES SOBRE ESTOS DOS MODULOS
-*/

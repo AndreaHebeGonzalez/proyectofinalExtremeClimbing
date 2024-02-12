@@ -1,13 +1,4 @@
-/*
-Creando una instancia de un enrutador de Express.
-Luego puedes definir rutas, middleware y controladores en ese enrutador específico.
-Un enrutador en Express.js es un middleware que puede manejar rutas y peticiones de manera modular, permitiendo organizar de manera más limpia y estructurada el manejo de rutas en una aplicación.
-En enrutador define las rutas de la aplicación y conecta las solicitudes HTTP con los controladores apropiados.
 
-Actúa como un enrutador para dirigir las solicitudes a los controladores correspondientes
-
-El enrutador debe montarse en el entry point con la ruta base, que conectará con las rutas definidas en este modulo
-*/
 
 //Se importa el objeto Router desde express para crear instancias de rutas.
 const { Router } = require('express');
@@ -53,7 +44,6 @@ const { validarAdmin  } = require('../middlewares/validarAdmin.middleware');
 
 //Creo los endpoint para el manejo de solicitudes HTTP:
 
-//En cada solicitud se pasa la referencia a las funciones controlodaras,  La ejecución se realiza automáticamente por Express cuando una solicitud coincide con la ruta definida. 
 
 productosRouter.get("/", productosController.buscarTodos);
 

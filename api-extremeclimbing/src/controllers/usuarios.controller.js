@@ -67,13 +67,14 @@ const signIn = async (req, res) => { //!Funcionando
             return;
         };
         const resultado = await bcrypt.compare(contraseña, usuario.contraseña);
+
         if(!resultado) {
             res.status(401).json({ msg: 'Email o contraseña incorrectos' });
-            //En el contexto de un sistema de autenticación, como un sistema de inicio de sesión, este código se puede utilizar para indicar que las credenciales proporcionadas por el usuario (por ejemplo, nombre de usuario y contraseña) no son válidas o no son suficientes para acceder al recurso solicitado.
             return;
         };
 
         const dataUsuario = {
+            id: usuario.idUsuario,
             nombre: usuario.nombre,
             apellido: usuario.apellido,
             nacimiento: usuario.nacimiento,
@@ -81,13 +82,15 @@ const signIn = async (req, res) => { //!Funcionando
             rol: usuario.rol,
         };
 
-        if(!req.session.idUsuario) {
+        if(!req.session.idUsuario) { //!NO PUEDO USAR ESTA INFO EN LAS SIGUIENTES SOLICITUDES PARA VERIFICACIONES, LA COOKIE DE SESION NO SE ENVIA DESDE EL SERVIDOR PARECE NO ALMACENARSE EN EL NAVEGADOR
             req.session.idUsuario = usuario.idUsuario;
             req.session.nombre = usuario.nombre,
             req.session.apellido = usuario.apellido,
             req.session.nacimiento = usuario.nacimiento,
             req.session.email = usuario.email
             req.session.rol = usuario.rol;
+
+            console.log(req.session.idUsuario);
         };
 
         res.status(200).json({ msg: 'Se ha iniciado sesion exitosamente', dataUsuario });
@@ -210,11 +213,18 @@ const borrarUsuario = async (req, res) => { //!Funcionando
     };
 };
 
-const verificarSesion = async (req, res) => {
+const verificarSesion = async (req, res) => { //!PROBLEMAS PARA ALMACENAR LA COOKIE EN EL NAVEGADOR, NO SE ALMACENA ???
     if (req.session.idUsuario) {
-        res.json({ nombre: req.session.nombre, apellido: req.session.apellido, nacimiento: req.session.nacimiento, email: req.session.email, rol: req.session.rol });
+        const dataUsuario = {
+            nombre: req.session.nombre,
+            apellido: req.session.apellido,
+            nacimiento: req.session.nacimiento,
+            email: req.session.email,
+            rol: req.session.rol,
+        };
+        res.json({ msg: 'Usuario autenticado', dataUsuario });
     } else {
-        res.status(401).json({ message: 'Usuario no autenticado' });
+        res.status(401).json({ msg: 'Usuario no autenticado' });
     };
 };
 
@@ -231,100 +241,3 @@ module.exports = {
     borrarUsuario,
     verificarSesion
 };
-
-
-/*
-Agregar una confirmación antes de eliminar el usuario, ya que esta es una operación crítica:
-
-Confirmacion en el frontend de borrado de usuario para boton de arrepentimiento
-
-async function confirmarYEliminarUsuario() {
-    const confirmacion = confirm('¿Estás seguro de que deseas eliminar tu cuenta?');
-
-    if (confirmacion) {
-        try {
-            const response = await fetch('/ruta-para-eliminar-usuario', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ confirmacion: true }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data.msg);
-            } else {
-                throw new Error('Error al eliminar el usuario');
-            }
-        } catch (error) {
-            console.error('Error al eliminar el usuario', error);
-        }
-    } else {
-        console.log('Eliminación cancelada');
-    }
-}
-
-// Llama a la función para confirmar y eliminar el usuario
-confirmarYEliminarUsuario();
-
-En el backend controlador para borrar usuario incluye una capa de confirmacion de eliminacion de usuario: 
-
-
-const borrarUsuario = async (req, res) => {
-    const idUsuario = req.session.idUsuario;
-    try {
-        const usuario = await Usuarios.findByPk(idUsuario);
-        
-        if(usuario) {
-            // Pregunta de confirmación
-            // Puedes personalizar el manejo de confirmación según tus necesidades
-            const confirmacion = req.body.confirmacion;
-            
-            if (confirmacion === true) {
-                // Elimina el usuario usando destroy() con el criterio de búsqueda
-                await Usuarios.destroy({
-                    where: { idUsuario: idUsuario }
-                });
-
-                // Devuelve una respuesta exitosa
-                res.status(200).json({ msg: 'Usuario eliminado exitosamente' });
-            } else {
-                // Devuelve un mensaje de confirmación necesario
-                res.status(400).json({ msg: 'Se requiere confirmación para eliminar el usuario' });
-            }
-        } else {
-            // Devuelve un mensaje si el usuario no se encuentra
-            res.status(404).json({ msg: 'Usuario no encontrado' });
-        }
-    } catch(error) {
-        // Maneja los errores correctamente
-        console.error('Error al borrar el usuario', error);
-        res.status(500).json({ msg: 'Error al borrar el usuario', error });
-    }
-};
-
-Comentario sobre esta doble capa de confirmacion, por un lado se confirma mendiante una ventana en la interfaz de usuario la eliminacion, y por otro lado dicha confirmacion se envial en la request del body al back. Esto permite lo siguiente: 
-
-
-La confirmación en el frontend (confirmación === true) se utiliza para proporcionar una capa adicional de interactividad y comodidad para el usuario antes de realizar la solicitud para eliminar el usuario. Sin embargo, como mencionaste, esta confirmación podría ser manipulada en el lado del cliente, por lo que no debes confiar completamente en ella para la seguridad.
-
-La confirmación en el backend es una medida de seguridad adicional. Al realizar la confirmación en el backend, te aseguras de que la solicitud solo se procesará si el servidor también verifica la confirmación. Esto es útil para prevenir posibles ataques o manipulaciones en el lado del cliente.
-
-if (confirmacion === true) {
-    // Elimina el usuario usando destroy() con el criterio de búsqueda
-    await Usuarios.destroy({
-        where: { idUsuario: idUsuario }
-    });
-
-    // Devuelve una respuesta exitosa
-    res.status(200).json({ msg: 'Usuario eliminado exitosamente' });
-} else {
-    // Devuelve un mensaje de confirmación necesario
-    res.status(400).json({ msg: 'Se requiere confirmación para eliminar el usuario' });
-}
-
-Aquí, si la confirmación es true, se procede a eliminar el usuario. Si la confirmación no es true, se responde con un código de estado 400 y un mensaje indicando que se requiere confirmación para eliminar el usuario. Esto garantiza que el servidor valide la confirmación antes de realizar cualquier acción crítica.
-
-El código de estado HTTP 400 significa "Bad Request" (Solicitud Incorrecta). Este código se utiliza para indicar que el servidor no pudo entender o procesar la solicitud del cliente debido a un error en la solicitud.
-*/

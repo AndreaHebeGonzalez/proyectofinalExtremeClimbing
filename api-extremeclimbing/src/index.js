@@ -4,7 +4,8 @@
 const express = require('express');
 const cors = require('cors');
 
-//Importo enrutadores creados en la carpeta routes para su montaje, con los enrutadores se definen las rutas (endpoints) para el manejo de las solicitudes HTTP y su conexión con los cotroladores específicos.
+//Importo enrutadores creados en la carpeta routes para su montaje
+
 const productosRouter = require('./routes/productos.routes');
 
 const imagenesRouter = require('./routes/imagenes.routes');
@@ -48,15 +49,11 @@ app.use(cors({
   credentials: true,
 }));
 
-/*
-Montaje de middlewares:
-Se usan los middlewares: express.json() para analizar el cuerpo de las solicitudes con formato JSON, y middlewareDePrueba definido anteriormente, multer para cargar las imagenes en el sistema de archivos del servidor, express-session para crear sesiones de usaurios en la api back...
-*/
 
 app.use(express.static('views'));
 
 app.use(express.json({ limit: '20mb' }));
-app.use(express.urlencoded({ limit: '20mb', extended: true })); // Este middleware se usa para  gestionar datos de formularios enviados mediante el método POST. El middleware express.urlencoded() analiza los datos del cuerpo de la solicitud POST y los convierte en un objeto JavaScript, que luego se puede utilizar en las rutas de tu aplicación. La opción extended en express.urlencoded({ extended: false }) se refiere a cómo se analizan los datos codificados en URL. Cuando extended es false, el middleware utiliza la biblioteca querystring de Node.js para analizar los datos, que admite solo datos simples y no objetos anidados. Si extended es true, el middleware utiliza la biblioteca qs para analizar los datos, lo que permite la serialización y análisis de objetos anidados, con limit: '20mb' se establece un tamaño maximo para los archivos enviados
+app.use(express.urlencoded({ limit: '20mb', extended: true })); 
 app.use(middlewareDePrueba);
 
 //Montaje del middleware express-session
@@ -73,9 +70,6 @@ app.get("/", (req, res) => {
     res.send("Realizaste una solicitud GET a la ruta raiz");
 });
 
-/*
-.authenticate() es un método de la instancia bd que se utiliza para verificar la conexión a la base de datos y devuelve una promesa que se resolverá si la conexión es exitosa y se rechazará si hay algún problema durante la conexión
-*/
 
 async function iniciarServidor() {
   try {

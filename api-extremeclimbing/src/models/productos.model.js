@@ -1,16 +1,6 @@
-/*
-Modelo (Model):
 
-Representa la estructura y la lógica de los datos de la aplicación.
-Interactúa con la base de datos y realiza operaciones relacionadas con los datos.
-No tiene conocimiento directo de la interfaz de usuario ni de cómo se presentan los datos
-*/
 
-/*
-Los modelos deben incronizarse en index.js
-*/
 
-//Importo DataTypes para definir los tipos de datos, y QueryTypes que es un objeto proporcionado por Sequelize que se utiliza para especificar el tipo de consulta que se está realizando.
 const { DataTypes } = require('sequelize');
 
 //Definicion del modelo producto 
@@ -89,10 +79,6 @@ module.exports = (bd) => {
     return Productos;
 };
 
-
-/*
-    la opción tableName se utiliza para especificar el nombre exacto de la tabla en la base de datos a la cual el modelo está asociado.
- */
 
 
 
