@@ -34,6 +34,11 @@ usuariosRouter.get('/', usuariosController.obtenerTodos); //!Funcionando
 
 usuariosRouter.get("/perfil", usuariosController.verificarSesion);
 
+usuariosRouter.get(
+    '/:id',
+    usuariosController.buscarPorId
+);
+
 usuariosRouter.post(//!Funcionando
     "/signin", 
     [validarEmail, validarContraseña, validarErrores], 

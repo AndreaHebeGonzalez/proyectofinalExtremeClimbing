@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './FormRegistroLogin.css';
 
 
-const Registro = ({ nombre, apellido, nacimiento, email, contraseña, repitaContraseña, handleNombre, handleApellido, handleNacimiento, handleEmail, handleContraseña, handleRepitaContraseña, contraseñasCoinciden, contraseñaErrorUno, contraseñaErrorDos, contraseñaErrorTres, contraseñaErrorCuatro, handleSubmit }) => {
+const Registro = ({ nombre, apellido, nacimiento, email, contraseña, repitaContraseña, handleNombre, handleApellido, handleNacimiento, handleEmail, handleContraseña, handleRepitaContraseña, contraseñasCoinciden, contraseñaErrorUno, contraseñaErrorDos, contraseñaErrorTres, contraseñaErrorCuatro, provincia, localidad, codigoPostal, direccionNombre, direccionNumero, telefono, handleProvincia, handleLocalidad, handleCodigoPostal, handleDireccionNombre, handleDireccionNumero, handleTelefono, handleSubmit }) => {
     
     const [cambiado, setCambiado] = useState({
         nombre: false,
@@ -12,6 +12,12 @@ const Registro = ({ nombre, apellido, nacimiento, email, contraseña, repitaCont
         email: false,
         contraseña: false,
         repitaContraseña: false,
+        provincia: false,
+        localidad: false,
+        codigoPostal: false,
+        direccionNombre: false,
+        direccionNumero: false,
+        telefono: false
     });
 
     const [verContraseña, setVerContraseña] = useState(false);
@@ -117,6 +123,78 @@ const Registro = ({ nombre, apellido, nacimiento, email, contraseña, repitaCont
                                 });
                                 }}/>
                             {cambiado.repitaContraseña === true && (repitaContraseña === '' || contraseñasCoinciden === false) && <small>Las contraseñas no coinciden</small>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="provincia">Provincia <span className="asterisco">* </span></label>
+                        <div className="cont-obligatorio">
+                            <input type="text" name="provincia" id="provincia" value={provincia} placeholder="Provincia" onChange={(e) => {handleProvincia(e.target.value);
+                                setCambiado({
+                                    ...cambiado,
+                                    provincia: true
+                                })}}/>
+                            {cambiado.provincia === true && provincia === '' && <small>Este campo es obligatorio</small>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="localidad">Localidad <span className="asterisco">* </span></label>
+                        <div className="cont-obligatorio">
+                            <input type="text" name="localidad" id="localidad" value={localidad} placeholder="Localidad" onChange={(e) => {handleLocalidad(e.target.value);
+                                setCambiado({
+                                    ...cambiado,
+                                    localidad: true
+                                })}}/>
+                            {cambiado.localidad === true && localidad === '' && <small>Este campo es obligatorio</small>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="codigoPostal">Codigo postal <span className="asterisco">* </span></label>
+                        <div className="cont-obligatorio">
+                            <input type="number" name="codigoPostal" id="codigoPostal" value={codigoPostal} placeholder="Codigo postal" onChange={(e) => {handleCodigoPostal(e.target.value);
+                                setCambiado({
+                                    ...cambiado,
+                                    codigoPostal: true
+                                })}}/>
+                            {cambiado.codigoPostal === true && codigoPostal === '' && <small>Este campo es obligatorio</small>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="direccionNombre">Calle <span className="asterisco">* </span></label>
+                        <div className="cont-obligatorio">
+                            <input type="text" name="direccionNombre" id="direccionNombre" value={direccionNombre} placeholder="Calle" onChange={(e) => {handleDireccionNombre(e.target.value);
+                                setCambiado({
+                                    ...cambiado,
+                                    direccionNombre: true
+                                })}}/>
+                            {cambiado.direccionNombre === true && direccionNombre === '' && <small>Este campo es obligatorio</small>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="direccionNumero">Número <span className="asterisco">* </span></label>
+                        <div className="cont-obligatorio">
+                            <input type="number" name="direccionNumero" id="direccionNumero" value={direccionNumero} placeholder="Número" onChange={(e) => {handleDireccionNumero(e.target.value);
+                                setCambiado({
+                                    ...cambiado,
+                                    direccionNumero: true
+                                })}}/>
+                            {cambiado.direccionNumero === true && direccionNumero === '' && <small>Este campo es obligatorio</small>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="telefono">Telefono <span className="asterisco">* </span></label>
+                        <div className="cont-obligatorio">
+                            <input type="number" name="telefono" id="telefono" value={telefono} placeholder="Número" onChange={(e) => {handleTelefono(e.target.value);
+                                setCambiado({
+                                    ...cambiado,
+                                    telefono: true
+                                })}}/>
+                            {cambiado.telefono === true && telefono === '' && <small>Este campo es obligatorio</small>}
                         </div>
                     </div>
                     

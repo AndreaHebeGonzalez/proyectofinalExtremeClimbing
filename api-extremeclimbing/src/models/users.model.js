@@ -79,11 +79,6 @@ module.exports = (bd) => {
             type: DataTypes.STRING,
             allowNull: true,
             field: 'codigo_postal',
-            validate: {
-                isNumeric: {
-                    msg: 'El código postal debe contener solo dígitos.',
-                },
-            },
         },
         direccionNombre: {
             type: DataTypes.STRING,
@@ -94,24 +89,11 @@ module.exports = (bd) => {
             type: DataTypes.STRING,
             allowNull: true,
             field:'direccion_numero',
-            validate: {
-                isNumeric: {
-                    msg: 'El número de calle debe contener solo dígitos.',
-                },
-            },
         },
         telefono: {
             type: DataTypes.STRING,
             allowNull: true, // Puedes cambiar a false si el teléfono es obligatorio
-            validate: {
-                isNumeric: {
-                    msg: 'El número de teléfono debe contener solo dígitos.',
-                },
-            },
         },
-            
-        
-
         rol: {
             type: DataTypes.STRING,
             defaultValue: 'usuario',

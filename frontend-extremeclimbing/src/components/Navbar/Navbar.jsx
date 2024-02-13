@@ -5,6 +5,7 @@ import './Navbar.css';
 import { useAbrirCarrito } from '../../EstadosGlobales/useAbrirCarrito'
 import { useCarrito } from '../../EstadosGlobales/useCarrito';
 import { useAuth } from '../../EstadosGlobales/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -33,7 +34,7 @@ const Navbar = () => {
     const isLogin = useAuth((state) => state.isLogin);
     const logout = useAuth((state) => state.logout);
 
-    //Iniciales de usuario:
+    const navegar = useNavigate();
 
 
 
@@ -81,6 +82,7 @@ const Navbar = () => {
     const handleCerrarSesion = () => {
         logout();
         localStorage.removeItem('userData');
+        navegar('/');
     };
 
     return (

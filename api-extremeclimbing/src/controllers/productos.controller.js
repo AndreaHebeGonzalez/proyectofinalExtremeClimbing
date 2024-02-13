@@ -76,7 +76,7 @@ const agregar = async (req, res) => {
         
         //Obtengo las url donde se subieron las imagenes cargadas por el administrador en el formulario:
         
-        const urlsImagenes = req.files.map(file => file.path); //file.path es de multer: file.path es específico de multer y representa la ubicación temporal del archivo en el servidor antes de ser movido o procesado de alguna manera. Se congfigura en multerconfig.js Después de este paso, se puede decidir qué hacer con el archivo.
+        const urlsImagenes = req.files.map(file => file.path);
         
         await Promise.all(urlsImagenes.map(async (url) => {
 
@@ -106,9 +106,9 @@ const agregar = async (req, res) => {
 
 //Creo controlador para buscar un producto por su id
 const buscarPorId = async (req, res) => {
-    //obtengo el id de la consulta que se guarda como parámetro de ruta en req.params, lo convierto a tipo number, se almacena en la bd como tipo entero
+    
     const id = Number(req.params.id);
-      console.log('Valor de ID:', id); // log para verificar el valor de id
+
     try {
         const producto = await Productos.findByPk(id, {
             include: [{ model: Imagenes, attributes: ['url'] }]

@@ -7,7 +7,7 @@ import { useCarrito } from '../../EstadosGlobales/useCarrito'
 import { Link } from 'react-router-dom'
 
 const Cart = () => {
-    const abrirCarrito = useAbrirCarrito((state) => state.carritoAbierto);
+    const carritoAbierto = useAbrirCarrito((state) => state.carritoAbierto);
     const cerrarCarrito = useAbrirCarrito((state) => state.cerrarCarrito);
     const productosCarrito = useCarrito((state) => state.productosCarrito);
     const eliminarProducto = useCarrito((state) => state.eliminarProducto);
@@ -39,7 +39,7 @@ const Cart = () => {
     };
 
     return (
-        <div className={`ventana-carrito ${abrirCarrito ? "carrito-aparece":""}`}>
+        <div className={`ventana-carrito ${carritoAbierto ? "carrito-aparece":""}`}>
             <div className="titulo-cart">
                 <h3>Tu carrito</h3>
                 <div className="cerrar-cart" onClick={() => cerrarCarrito()}>
@@ -71,7 +71,7 @@ const Cart = () => {
                 </div>
                 <div className="cont-btn">
                 <Link to="/procesar-compra">
-                    <Btn2 accion='Finalizar compra' disabled={productosCarrito.length === 0} />
+                <Btn2 accion='Procesar compra' disabled={productosCarrito.length === 0} />
                 </Link>
                 </div>
             </div>

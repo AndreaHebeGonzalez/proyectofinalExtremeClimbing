@@ -19,10 +19,25 @@ const obtenerTodos = async (req, res) => { //!Funcionando
     };
 };
 
+const buscarPorId = async (req, res) => {
+    const idUsuario = Number(req.params.id);
+    try {
+        const dataUsuario = await Usuarios.findByPk(idUsuario);
+        if (dataUsuario) {
+            res.json(dataUsuario);
+        } else {
+            res.status(404).json({ msg: 'El usuario no se encuentra en la base de datos' })
+            return
+        };
+    } catch (error) {
+        console.error('Error al buscar el usuario', error);
+        res.status(500).json({ msg: 'Hubo un error al procesar la solicitud', error })
+    };
+};
 
 const signUp = async (req, res) => { //!Funcionando
     try {
-        const { nombre, apellido, nacimiento, email, contraseña, provincia, localidad, codigoPostal, nombreCalle, numeroCalle, telefono } = req.body;
+        const { nombre, apellido, nacimiento, email, contraseña, provincia, localidad, codigoPostal, direccionNombre, direccionNumero, telefono } = req.body;
         console.log(nacimiento);
         const nuevoUsuario = await Usuarios.create({
             nombre,
@@ -33,8 +48,8 @@ const signUp = async (req, res) => { //!Funcionando
             provincia,
             localidad,
             codigoPostal,
-            nombreCalle,
-            numeroCalle,
+            direccionNombre,
+            direccionNumero,
             telefono
         });
         //Almaceno info no sensible que, se me ocurre, puedo requerir en la session
@@ -233,6 +248,7 @@ const verificarSesion = async (req, res) => { //!PROBLEMAS PARA ALMACENAR LA COO
 
 module.exports = {
     obtenerTodos,
+    buscarPorId,
     signUp,
     signIn,
     signOut,

@@ -14,6 +14,12 @@ const Registro = () => {
         nacimiento:'',
         email:'',
         contraseña:'',
+        provincia:'',
+        localidad: '',
+        codigoPostal: '',
+        direccionNombre: '',
+        direccionNumero: '',
+        telefono:'',
 	});
 
     //campos obligatorios
@@ -27,6 +33,12 @@ const Registro = () => {
     const [contraseñaErrorTres, setContraseñaErrorTres] = useState('');
     const [contraseñaErrorCuatro, setContraseñaErrorCuatro] = useState('');
     const [repitaContraseña, setRepitaContraseña] = useState('');
+    const [provincia, setProvincia] = useState('');
+    const [localidad, setLocalidad] = useState('');
+    const [codigoPostal, setCodigoPostal] = useState('');
+    const [direccionNombre, setDireccionNombre] = useState('');
+    const [direccionNumero, setDireccionNumero] = useState('');
+    const [telefono, setTelefono] = useState('');
 
     const[contraseñasCoinciden, setContraseñasCoinciden] = useState(false);
 
@@ -112,6 +124,54 @@ const Registro = () => {
         };
     };
 
+    const handleProvincia = (valor) => {
+		setProvincia(valor);
+        setFormData({
+			...formData,
+			provincia: valor
+		});
+	};
+
+    const handleLocalidad = (valor) => {
+		setLocalidad(valor);
+        setFormData({
+			...formData,
+			localidad: valor
+		});
+	};
+
+    const handleCodigoPostal = (valor) => {
+		setCodigoPostal(valor.toString());
+        setFormData({
+			...formData,
+			codigoPostal: valor
+		});
+	};
+
+    const handleDireccionNombre = (valor) => {
+		setDireccionNombre(valor);
+        setFormData({
+			...formData,
+			direccionNombre: valor
+		});
+	};
+
+    const handleDireccionNumero = (valor) => {
+		setDireccionNumero(valor.toString());
+        setFormData({
+			...formData,
+			direccionNumero: valor
+		});
+	};
+
+    const handleTelefono = (valor) => {
+		setTelefono(valor.toString());
+        setFormData({
+			...formData,
+			telefono: valor
+		});
+	};
+
     useEffect(() => {
         validarContraseña();
     }, [contraseña]);
@@ -181,7 +241,7 @@ const Registro = () => {
                         navegar('/');
                     } else {
 
-                    }
+                    };
                 } catch (error) {
                     console.error('Error:', error);
                 }
@@ -197,7 +257,7 @@ const Registro = () => {
 
     return (
         <>
-            <FormRegistro nombre={nombre} apellido={apellido} nacimiento={nacimiento} email={email} contraseña={contraseña} repitaContraseña={repitaContraseña} handleNombre={handleNombre} handleApellido={handleApellido} handleNacimiento={handleNacimiento} handleEmail={handleEmail} handleContraseña={handleContraseña} handleRepitaContraseña={handleRepitaContraseña} contraseñasCoinciden={contraseñasCoinciden}  contraseñaErrorUno= {contraseñaErrorUno} contraseñaErrorDos={contraseñaErrorDos} contraseñaErrorTres={contraseñaErrorTres} contraseñaErrorCuatro={contraseñaErrorCuatro} handleSubmit={handleSubmit} />
+            <FormRegistro nombre={nombre} apellido={apellido} nacimiento={nacimiento} email={email} contraseña={contraseña} repitaContraseña={repitaContraseña} handleNombre={handleNombre} handleApellido={handleApellido} handleNacimiento={handleNacimiento} handleEmail={handleEmail} handleContraseña={handleContraseña} handleRepitaContraseña={handleRepitaContraseña} contraseñasCoinciden={contraseñasCoinciden}  contraseñaErrorUno= {contraseñaErrorUno} contraseñaErrorDos={contraseñaErrorDos} contraseñaErrorTres={contraseñaErrorTres} contraseñaErrorCuatro={contraseñaErrorCuatro} provincia={provincia} localidad={localidad} codigoPostal={codigoPostal} direccionNombre={direccionNombre} direccionNumero={direccionNumero} telefono={telefono} handleProvincia={handleProvincia} handleLocalidad={handleLocalidad} handleCodigoPostal={handleCodigoPostal} handleDireccionNombre={handleDireccionNombre} handleDireccionNumero={handleDireccionNumero} handleTelefono={handleTelefono} handleSubmit={handleSubmit} />
 
             <VentanaModal respuesta = "Formulario enviado!" formEnviado={formEnviado} setFormEnviado={setFormEnviado} />
         </>
