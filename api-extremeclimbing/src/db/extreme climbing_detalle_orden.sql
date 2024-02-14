@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `extreme climbing` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `extreme climbing`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: extreme climbing
@@ -32,7 +34,7 @@ CREATE TABLE `detalle_orden` (
   UNIQUE KEY `id_detalle_orden_UNIQUE` (`id_detalle_orden`),
   KEY `fk_orden_id_detalle_orden_idx` (`orden_id`),
   CONSTRAINT `fk_orden_id_detalle_orden` FOREIGN KEY (`orden_id`) REFERENCES `orden_de_compra` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +43,7 @@ CREATE TABLE `detalle_orden` (
 
 LOCK TABLES `detalle_orden` WRITE;
 /*!40000 ALTER TABLE `detalle_orden` DISABLE KEYS */;
-INSERT INTO `detalle_orden` VALUES (1,1,5,25896.00,2),(2,1,10,4785.00,1);
+INSERT INTO `detalle_orden` VALUES (5,3,15,15485.00,5),(6,3,1,1478.00,4),(7,4,3,262343.00,1),(8,5,3,262343.00,1),(9,8,4,262343.00,5);
 /*!40000 ALTER TABLE `detalle_orden` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-11 19:50:54
+-- Dump completed on 2024-02-14 15:32:44
