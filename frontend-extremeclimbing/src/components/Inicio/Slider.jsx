@@ -3,7 +3,7 @@ import { Carousel } from 'antd';
 import './Portada.css'
 
 const Slider = () => (
-    <Carousel autoplay autoplaySpeed={3000}>
+    <Carousel autoplay autoplaySpeed={4000}>
         <div>
             <img src="../../../../../public/imagenes/fotoPortada1.jpg" alt="Imagen 1" style={{ width: '100%', height: 'auto' }}/>
         </div>
