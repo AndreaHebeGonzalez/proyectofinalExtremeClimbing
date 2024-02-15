@@ -1,4 +1,4 @@
-#portada {
+/* #portada {
     position: relative;
     background-color: var(--color-body);
 }
@@ -14,7 +14,7 @@
     top: 59%;
     left: 70%; */
     
-}
+
 
 #portada .img-propaganda {
     width: 35%;
@@ -22,12 +22,33 @@
     position: absolute;
     top: 30%;
     left: 60%;
-}
+} */
 
 #portada button {
     top: 70%;
     left: 65%;
     position: absolute;
+}
+
+.ant-carousel .slick-dots li button {
+    background-color: #2a2a2a; 
+    width: 13px; 
+    height: 13px; 
+    border-radius: 5px;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+background-color: #000000; 
+}
+
+.ant-carousel .slick-dots {
+    bottom: 20px; 
+    top: auto; 
+}
+
+  /* Ajusta el espacio entre los puntos indicadores */
+.ant-carousel .slick-dots li {
+    margin: 0 4px; /* Ajusta el margen entre los puntos */
 }
 
 @media (min-width: 768px) {

@@ -87,77 +87,78 @@ const DetalleProducto = () => {
 			
 
 			<section className="descripcion">
-					<div className="area-titulo">
-						<h4 style={{ alignSelf: 'start'}}>{producto.marca}</h4>
-						<h3>{producto.nombre}</h3>
-						<div className='bloque-valoracion-precio'>
-							<div className="bloque-precio">
-								<div>
-									<p><span style={{color: "red"}}>{producto.precio}</span></p>
-									<p><span>(1 pago)</span></p>
-								</div>
-								<div>
-									<p>$<span>{producto.precio}</span></p>
-									<p><span>(3 cuotas fijas)</span></p>
-								</div>   
+				<div className="stock">{producto.cantidad > 0 ? "En stock":"Sin stock"}</div>
+				<div className="area-titulo">
+					<h4 style={{ alignSelf: 'start'}}>{producto.marca}</h4>
+					<h3>{producto.nombre}</h3>
+					<div className='bloque-valoracion-precio'>
+						<div className="bloque-precio">
+							<div>
+								<p><span style={{color: "red"}}>{producto.precio}</span></p>
+								<p><span>(1 pago)</span></p>
 							</div>
-							<div className="valoracion">
-								<img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-vacia.png" alt="estrella vacía"/>
-							</div>
+							<div>
+								<p>$<span>{producto.precio}</span></p>
+								<p><span>(3 cuotas fijas)</span></p>
+							</div>   
 						</div>
-						
-					</div>
-				
-
-					<div className="descripcion-texto">
-						<p>
-							{producto.descripcion}
-						</p>
-						<div className="caracteristicas">
-							<div className="caract-desplegable" onClick={() => {
-								handleClickCaracteristicas();
-							}}>
-								<span>Caracteristicas</span>
-								<img className={`iconos-respons ${mostrarCaracteristicas ? 'rotar-icono-desplegar':''}`} src="../../public/imagenes/iconos/desplegable.png" alt="Desplegar"/>
-							</div>
-							<div className= {`cont-list-caracteristicas ${mostrarCaracteristicas ? 'mostar-caracteristicas':''}`} >
-
-								<ul className={`lista-caracteristicas ${mostrarCaracteristicas ? 'padding-lista-caract':''}`}>
-									{producto && producto.caracteristicas && producto.caracteristicas.map((caracteristica, index) => {
-										return <li key= {`${producto.id}caracteristica${index}`}>{caracteristica}</li>
-									})}
-								</ul>
-
-							</div>
+						<div className="valoracion">
+							<img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-vacia.png" alt="estrella vacía"/>
 						</div>
-						
-						{producto.infoTecnica && 
-						<div className="caracteristicas">
-							<div className="caract-desplegable" onClick={() => {
-								handleClickInfoTecnica();
-							}}>
-								<span>Información técnica</span>
-								<img className={`iconos-respons ${mostrarInfoTecnica ? 'rotar-icono-desplegar':''}`} src="../../public/imagenes/iconos/desplegable.png" alt="Desplegar"/>
-							</div>
-							<div className={`cont-list-caracteristicas ${mostrarInfoTecnica ? 'mostar-caracteristicas':''}`}>
+					</div>
+					
+				</div>
+			
 
-								<ul className={`lista-caracteristicas ${mostrarInfoTecnica ? 'padding-lista-caract':''}`}>
-									{producto && producto.infoTecnica && producto.infoTecnica.map((infoTec) => {
-											return <li>{infoTec}</li>
-									})}
-								</ul>
-
-							</div>
+				<div className="descripcion-texto">
+					<p>
+						{producto.descripcion}
+					</p>
+					<div className="caracteristicas">
+						<div className="caract-desplegable" onClick={() => {
+							handleClickCaracteristicas();
+						}}>
+							<span>Caracteristicas</span>
+							<img className={`iconos-respons ${mostrarCaracteristicas ? 'rotar-icono-desplegar':''}`} src="../../public/imagenes/iconos/desplegable.png" alt="Desplegar"/>
 						</div>
-						}
-					</div>
+						<div className= {`cont-list-caracteristicas ${mostrarCaracteristicas ? 'mostar-caracteristicas':''}`} >
 
-					<div className="agregar-a-carrito">
-						{/* <input type="number" id="numero" min={0} value={cantidadProducto} onChange={(e) => {
-							setCantidadProducto(e.target.value);
-						}}/> */}
-						<button className="btn-3" onClick={handleAgregarProducto} disabled={productoPresente}>Agregar al carrito</button>
+							<ul className={`lista-caracteristicas ${mostrarCaracteristicas ? 'padding-lista-caract':''}`}>
+								{producto && producto.caracteristicas && producto.caracteristicas.map((caracteristica, index) => {
+									return <li key= {`${producto.id}caracteristica${index}`}>{caracteristica}</li>
+								})}
+							</ul>
+
+						</div>
 					</div>
+					
+					{producto.infoTecnica && 
+					<div className="caracteristicas">
+						<div className="caract-desplegable" onClick={() => {
+							handleClickInfoTecnica();
+						}}>
+							<span>Información técnica</span>
+							<img className={`iconos-respons ${mostrarInfoTecnica ? 'rotar-icono-desplegar':''}`} src="../../public/imagenes/iconos/desplegable.png" alt="Desplegar"/>
+						</div>
+						<div className={`cont-list-caracteristicas ${mostrarInfoTecnica ? 'mostar-caracteristicas':''}`}>
+
+							<ul className={`lista-caracteristicas ${mostrarInfoTecnica ? 'padding-lista-caract':''}`}>
+								{producto && producto.infoTecnica && producto.infoTecnica.map((infoTec) => {
+										return <li>{infoTec}</li>
+								})}
+							</ul>
+
+						</div>
+					</div>
+					}
+				</div>
+
+				<div className="agregar-a-carrito">
+					{/* <input type="number" id="numero" min={0} value={cantidadProducto} onChange={(e) => {
+						setCantidadProducto(e.target.value);
+					}}/> */}
+					<button className="btn-3" onClick={handleAgregarProducto} disabled={productoPresente}>Agregar al carrito</button>
+				</div>
 			</section>
 		</div>
 	)

@@ -70,6 +70,7 @@
     align-items: start;
     margin: 5%;
     padding: 2.3%;
+    position: relative;
 }
 
 .descripcion h3 {
@@ -225,13 +226,22 @@
     color: var(--color-destacable-dos);
 }
 
+.stock {
+    color: white;
+    position: absolute;
+    background-color: #000;
+    padding: 0.5rem;
+    top:0;
+    right: 0;
+    font-size: clamp(0.9rem, 1.4vw, 1.8rem);
+}
+
 /*Ajustes responsives*/
 
 @media (min-width: 480px ) {
     .imagenes-producto {
         padding: 4vw 8vw 2vw 8vw;
     }
-    
 }
 
 @media (min-width: 768px) {
