@@ -1,12 +1,9 @@
-// creando una instancia de un enrutador de Express.
-
 const Router = require('express');
 
 const usuariosRouter = Router();
 
 const usuariosController = require('../controllers/usuarios.controller');
 
-//Importo validadores
 
 const { validarErrores } = require('../middlewares/validadorerr.middleware');
 
@@ -19,16 +16,6 @@ const {
     validarContraseña,
     validarAutenticacion
 } = require('../middlewares/validadoresUsuario.middleware');
-
-/*
-    obtenerTodos,
-    signUp,
-    login,
-    logout,
-    actualizarUsuario,
-*/
-
-//ruta obtener todos:
 
 usuariosRouter.get('/', usuariosController.obtenerTodos); //!Funcionando
 

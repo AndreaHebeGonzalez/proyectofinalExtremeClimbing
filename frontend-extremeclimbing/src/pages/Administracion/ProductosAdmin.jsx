@@ -29,7 +29,7 @@ const ProductosAdmin = () => {
 
     const eliminarProducto = async(id) => {
         try {
-            const respuesta = await fetch(`http://localhost:8000/productos/${id}`, {
+            const respuesta = await fetch(`/api/productos/${id}`, {
                 method: 'DELETE',
             });
             if (respuesta.ok) {

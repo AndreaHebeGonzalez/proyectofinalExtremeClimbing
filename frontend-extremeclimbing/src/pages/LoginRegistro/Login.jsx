@@ -39,7 +39,7 @@ const Login = () => {
     const handleSubmit = async() => {
         console.log(formData)
         try {
-            const respuesta = await fetch ("http://localhost:8000/usuarios/signin", {
+            const respuesta = await fetch ("/api/usuarios/signin", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

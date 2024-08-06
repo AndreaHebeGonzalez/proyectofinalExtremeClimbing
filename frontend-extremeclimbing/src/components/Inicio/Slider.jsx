@@ -5,13 +5,13 @@ import './Portada.css'
 const Slider = () => (
     <Carousel autoplay autoplaySpeed={4000}>
         <div>
-            <img src="../../../../../public/imagenes/fotoPortada1.jpg" alt="Imagen 1" style={{ width: '100%', height: 'auto' }}/>
+            <img src="/public/imagenes/fotoPortada1.jpg" alt="Imagen 1" style={{ width: '100%', height: 'auto' }}/>
         </div>
         <div>
-            <img src="../../../../../public/imagenes/fotoPortada2.jpg" alt="Imagen 1" style={{ width: '100%', height: 'auto' }}/>
+            <img src="/public/imagenes/fotoPortada2.jpg" alt="Imagen 1" style={{ width: '100%', height: 'auto' }}/>
         </div>
         <div>
-            <img src="../../../../../public/imagenes/fotoPortada3.jpg" alt="Imagen 1" style={{ width: '100%', height: 'auto' }}/>
+            <img src="/public/imagenes/fotoPortada3.jpg" alt="Imagen 1" style={{ width: '100%', height: 'auto' }}/>
         </div>  
     </Carousel>
 );

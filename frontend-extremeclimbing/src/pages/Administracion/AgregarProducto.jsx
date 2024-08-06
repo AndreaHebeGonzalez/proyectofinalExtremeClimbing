@@ -49,6 +49,7 @@ const AgregarProducto = () => {
 	const handleModificaCaracteristica = (id, valor) => {
 		console.log(id, valor)
 		console.log(formData.caracteristicas[0])
+		console.log(formData)
 		setCaract((prevCaract) =>
 			prevCaract.map((caracteristica) =>
 				caracteristica.id === id ? { ...caracteristica, valor } : caracteristica)
@@ -94,6 +95,7 @@ const AgregarProducto = () => {
 			...formData,
 			cantidad: valor
 		});
+		
 	};
 
 	const handleCategoria = (valor) => {
@@ -158,7 +160,7 @@ const AgregarProducto = () => {
 			formDataConArchivos.append('imagenes', archivos[i]);
 		};
 		try {
-			const respuesta = await fetch ("http://localhost:8000/productos/", {
+			const respuesta = await fetch ("/api/productos/", {
 				method: 'POST',
 				body: formDataConArchivos
 			});

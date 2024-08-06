@@ -32,7 +32,7 @@ const Imagenes = ({ producto }) => {
             </div>
             <div className='cont-carrusel-miniatura'>
                 {largoArray > 5 && <button onClick={handleClickIzquierda} disabled={arrancaIndex === 0}>
-                    <img className="iconos-respons" src="../../public/imagenes/iconos/anterior.png" alt="siguiente"/>
+                    <img className="iconos-respons" src="/public/imagenes/iconos/anterior.png" alt="siguiente"/>
                 </button>}
                 
                 <div className="cont-imgs-small">
@@ -46,7 +46,7 @@ const Imagenes = ({ producto }) => {
                     }
                 </div>
                 {largoArray > 5 && <button onClick={handleClickDerecha} disabled={arrancaIndex >= largoArray - 5}>
-                    <img className="iconos-respons" src="../../public/imagenes/iconos/siguiente.png" alt="siguiente"/>
+                    <img className="iconos-respons" src="/public/imagenes/iconos/siguiente.png" alt="siguiente"/>
                 </button>}
                 
             </div>

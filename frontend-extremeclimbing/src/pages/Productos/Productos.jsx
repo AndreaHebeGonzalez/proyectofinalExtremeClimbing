@@ -37,7 +37,7 @@ const Productos = () => {
 
     useEffect(() => {
         const soliFetch = async () => {
-            const respuesta = await fetch('http://localhost:8000/productos/categorias/categorias');
+            const respuesta = await fetch('/api/productos/categorias/categorias');
             const data = await respuesta.json();
             setCategorias(data);
         };

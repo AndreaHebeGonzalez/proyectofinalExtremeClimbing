@@ -207,7 +207,7 @@ const Registro = () => {
         };
         console.log(formDataLimpio);
         try {
-            const respuesta = await fetch ("http://localhost:8000/usuarios", {
+            const respuesta = await fetch ("/api/usuarios", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json' 

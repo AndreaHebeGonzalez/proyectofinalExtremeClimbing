@@ -1,26 +1,19 @@
-//Controladres:
-/*Gestiona la lógica de la aplicación y actúa como intermediario entre el modelo y la vista.
-Responde a las solicitudes del usuario, realiza operaciones en el modelo y actualiza la vista.
-*/
+
 const { Productos, Imagenes } = require('../models/index');
 
 const bd = require('../config/bd');
 
-//Importo el modulo path para usar el método path.join(): 
+
 const path = require('path');
 
-//importo modulo fs en su version promisificada para trabajar con promesas los proceso de eliminado de archivos del sistema de archivos
 const fs = require('fs').promises;
 
-//Creo controlador para buscar todos los productos 
-// async va delante de la funcion que contendrá codigo asíncrono
+
 const buscarTodos = async (req, res) => {
     try {
         const productosConImagenes = await Productos.findAll({
             include: [{ model: Imagenes, attributes: ['url'] }],
-        }); //contiene la promesa si resuelve el resultado se almacena en productos
-    //Envio los productos en el cuerpo de la respuesta, utilizo el metodo .json para enviarlo en este formato ya que los resultados de las consultas se devuelven en formato tipo objeto
-    //El siguiente mapeo manual se realiza para seleccionar y estructurar los campos exactos que se desean enviar al cliente
+        }); 
     const productosFormateados = productosConImagenes.map(producto => {
         return {
             id: producto.id,
@@ -41,21 +34,19 @@ const buscarTodos = async (req, res) => {
         };
     });
     res.json(productosFormateados);
-    //.json() se utiliza para extraer el cuerpo de una respuesta HTTP que está en formato JSON y convertirlo en un objeto de Python.
-    } catch (error) { //Si la promesa fue rechazada hubo un error y se ingresa en este bloque para imprimirlo y generar el estado de la consulta
+    
+    } catch (error) { 
         console.error('Se produjo un error en la busqueda de los productos', error);
         return res.status(500).json({msg:'Error interno del servidor'});
     };
 };
 
-//Creo controlador para agregar un producto (tengo que verificar que el producto no exista en la base de datos
 const agregar = async (req, res) => {
-    //Obtengo los campos de la solicitud con sintaxis de desestructuracion
+    
     const { nombre, marca, precio, cantidad, categoria, subcategoriaUno, subcategoriaDos, subcategoriaTres, descripcion, caracteristicas, infoTecnica } = req.body;
     //Creo una transaccion
     let transaction;
     try {
-
         transaction = await bd.transaction();
 
         const nuevoProducto = await Productos.create({
@@ -74,8 +65,6 @@ const agregar = async (req, res) => {
             { transaction }
         );
         
-        //Obtengo las url donde se subieron las imagenes cargadas por el administrador en el formulario:
-        
         const urlsImagenes = req.files.map(file => file.path);
         
         await Promise.all(urlsImagenes.map(async (url) => {
@@ -88,7 +77,7 @@ const agregar = async (req, res) => {
                 { transaction });
         }));
         await transaction.commit();
-    //Enviamos una respuesta al cliente en formato de objeto:
+    
         return res.status(201).json({
             msg: 'Producto agregado exitosamente',
             nuevoProducto,
@@ -96,15 +85,14 @@ const agregar = async (req, res) => {
     } catch (error) {
         console.error('Hubo un error no pudo crearse el producto', error);
         if (transaction) {
-            await transaction.rollback(); // Si transaction está definida, ejecuta rollback
+            await transaction.rollback();
         }
-        //Error interno del servidor
         return res.status(500).json('Error interno del servidor', error);
     };
 };
 
 
-//Creo controlador para buscar un producto por su id
+
 const buscarPorId = async (req, res) => {
     
     const id = Number(req.params.id);
@@ -144,7 +132,6 @@ const actualizar = async (req, res) => {
     const id = Number(req.params.id);
     const { nombre, marca, precio, cantidad, categoria, subcategoriaUno, subcategoriaDos, subcategoriaTres, descripcion, caracteristicas, infoTecnica  } = req.body;
     try {
-        //Primero busco el producto por su id, y si lo encuentra lo actualizo
         const producto = await Productos.findByPk(id);
         if(producto) {
             const productoActualizado = await producto.update({
@@ -180,17 +167,14 @@ const actualizar = async (req, res) => {
 const borrarProducto = async (req, res) => {
     const id = Number(req.params.id);
     try {
-        const producto = await Productos.findByPk(id, { //producto contiene un objeto con todos los campos de la tabla 'productos' y tambien incluye un objeto 'Imagenes' con todos los campos de la tabla 'imagenes' que contienen el id de producto pasado
-            include: Imagenes // Incluye las imágenes asociadas al producto_id por la relacion de uno a muchos declarada
+        const producto = await Productos.findByPk(id, { 
+            include: Imagenes 
         });
         console.log(producto.Imagenes);
         if(producto) {
-            //consigo las  imagenes que contienen el producto id en el primer bloque, en el siguiente bloque mapeo el objeto producto.Imagenes y formo la ruta url con el metodo path.join, luego con el modulo fs de node elimino esos archivos ubicados en esa ruta.
-            /* const imagenesABorrar = producto.Imagenes.map(imagen => path.join(__dirname, '../..', imagen.url)); */
-            //__dirname indica la posicion del scrip, de ahi se sube dos veces y se entra en la url que contiene imagen.url --> !verificar
-            /* await Promise.all(imagenesABorrar.map(urlImagenes => fs.unlink(urlImagenes))); */
+            
             productoBorrado = await producto.destroy({
-                include: Imagenes // Incluye las imágenes asociadas al producto_id
+                include: Imagenes 
             });
             return res.json({msg: 'producto eliminado con exito'});
         } else {
@@ -233,7 +217,7 @@ const buscarPorCategoria = async (req, res) => {
             descripcion: producto.descripcion,
             caracteristicas: producto.caracteristicas,
             infoTecnica: producto.infoTecnica,
-            imagenes: producto.Imagenes.map(imagen => imagen.url), //Agrego el campo url de imagenes de ese producto
+            imagenes: producto.Imagenes.map(imagen => imagen.url),
         }))
         
         res.json(productosFormateador);
@@ -273,7 +257,7 @@ const busquedaAleatoria = async (req, res) => {
             descripcion: producto.descripcion,
             caracteristicas: producto.caracteristicas,
             infoTecnica: producto.infoTecnica,
-            imagenes: producto.Imagenes.map(imagen => imagen.url), //Agrego el campo url de imagenes de ese producto
+            imagenes: producto.Imagenes.map(imagen => imagen.url), 
         }))
         res.json(productosFormateador);
 

@@ -12,7 +12,7 @@ const CardProductosAdmin = ({ producto, eliminarProducto }) => {
                 <img className="articulo" src={urlCompleta} alt="Producto 1" />
             </div>
             <div className="valoracion">
-                <img  src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-vacia.png" alt="estrella vacía"/>
+                <img  src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-vacia.png" alt="estrella vacía"/>
             </div>
             
             <h4>{producto.marca}</h4>
@@ -23,7 +23,7 @@ const CardProductosAdmin = ({ producto, eliminarProducto }) => {
             
             
             <div className="precio">
-                <img src="../../public/imagenes/iconos/efectivo.png" alt="" className="iconos-respons"/>
+                <img src="/public/imagenes/iconos/efectivo.png" alt="" className="iconos-respons"/>
                 <p><span>$</span>{producto.precio}</p>
             </div>
             <div className='contenedor-btn'>

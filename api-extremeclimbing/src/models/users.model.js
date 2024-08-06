@@ -12,7 +12,7 @@ module.exports = (bd) => {
             unique: true,
             validate: {
                 isInt: {
-                    args: [0], //se especifica un rango con el limite inferior
+                    args: [0], 
                     msg: 'El valor de idUsuario debe ser un número entero positivo.',
                 },
             },
@@ -36,9 +36,8 @@ module.exports = (bd) => {
             },
         },
         nacimiento: {
-            type: DataTypes.DATEONLY, // Para almacenar solo la fecha sin la hora
+            type: DataTypes.DATEONLY, 
             allowNull: false,
-            //Capa de validacion adicional
             validate: {
                 isDate: {
                     msg: 'La fecha de nacimiento debe estar en formato de fecha válido.',
@@ -49,7 +48,7 @@ module.exports = (bd) => {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true, // Asegura que el correo electrónico sea único en la base de datos
+            unique: true,
             validate: {
                 isEmail: {
                     msg: 'Por favor, ingresa un correo electrónico válido.',
@@ -60,7 +59,6 @@ module.exports = (bd) => {
             type: DataTypes.STRING,
             allowNull: false,
             set(value) {
-                // Hash de la contraseña antes de almacenarla
                 if (value) {
                     const hashedPassword = bcrypt.hashSync(value, 10);
                     this.setDataValue('contraseña', hashedPassword);
@@ -92,7 +90,7 @@ module.exports = (bd) => {
         },
         telefono: {
             type: DataTypes.STRING,
-            allowNull: true, // Puedes cambiar a false si el teléfono es obligatorio
+            allowNull: true, 
         },
         rol: {
             type: DataTypes.STRING,
@@ -102,7 +100,7 @@ module.exports = (bd) => {
     }, {
         timestamps: false
     },{
-        tableName: 'usuarios', // Especifica el nombre exacto de la tabla en la base de datos
+        tableName: 'usuarios',
     });
     return Usuarios;
 };

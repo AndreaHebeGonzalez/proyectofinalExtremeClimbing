@@ -53,13 +53,13 @@ const CardProductosCarrusel = ({ producto, refHijo, obtenerAncho, obtuveAnchoCar
         <article key= {producto.id} className="contenedor-producto" ref={cardRef}> 
             <div className="producto">
                 <div className="row-img-iconos">
-                    {productoPresente === false && <img style={{ alignSelf: 'start'}} className="iconos-respons icono-sumar-a-carrito" onClick={handleAgregarProducto} src="../../public/imagenes/iconos/sumar-a-carrito.png" alt="Agregalo al carrito"/>}
-                    {productoPresente && <img style={{ alignSelf: 'start'}} className="iconos-respons icono-sumar-a-carrito" onClick={() => {abrirCarrito()}} src="../../public/imagenes/iconos/carrito.png" alt="Ver carrito"/>}
+                    {productoPresente === false && <img style={{ alignSelf: 'start'}} className="iconos-respons icono-sumar-a-carrito" onClick={handleAgregarProducto} src="/public/imagenes/iconos/sumar-a-carrito.png" alt="Agregalo al carrito"/>}
+                    {productoPresente && <img style={{ alignSelf: 'start'}} className="iconos-respons icono-sumar-a-carrito" onClick={() => {abrirCarrito()}} src="/public/imagenes/iconos/carrito.png" alt="Ver carrito"/>}
                     <img className="articulo" src={urlCompleta} alt="Producto 1" />
-                    <img className="iconos-respons" src="../../public/imagenes/iconos/me-gusta-32.png" alt="Sumalo a tus favoritos"/>
+                    <img className="iconos-respons" src="/public/imagenes/iconos/me-gusta-32.png" alt="Sumalo a tus favoritos"/>
                 </div>
                 <div className="valoracion">
-                    <img  src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-vacia.png" alt="estrella vacía"/>
+                    <img  src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="/public/imagenes/iconos/estrella-vacia.png" alt="estrella vacía"/>
                 </div>
                 
                 <h4>{producto.marca}</h4>
@@ -70,7 +70,7 @@ const CardProductosCarrusel = ({ producto, refHijo, obtenerAncho, obtuveAnchoCar
                 
                 
                 <div className="precio">
-                    <img src="../../public/imagenes/iconos/efectivo.png" alt="" className="iconos-respons"/>
+                    <img src="/public/imagenes/iconos/efectivo.png" alt="" className="iconos-respons"/>
                     <h3><span>$</span>{producto.precio}</h3>
                 </div>
 

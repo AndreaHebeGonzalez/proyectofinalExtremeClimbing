@@ -6,7 +6,7 @@ const Banner1 = () => {
         <section className="banner_1">
             <div className="contenedor_banner">
                 <div className="img-bunner-1">
-                    <img src="../../public/imagenes/img-banner-1.jpg" alt="Imagen de banner persona haciendo trekking"/>
+                    <img src="/public/imagenes/img-banner-1.jpg" alt="Imagen de banner persona haciendo trekking"/>
                 </div>
 
                 <div className="img-bunner-2">
@@ -19,15 +19,15 @@ const Banner1 = () => {
                         <h3><span className="destacado">Trekking</span> off</h3>
                         
                     </div>
-                    <img src="../../public/imagenes/img-banner-2.jpg" alt="Imagen de banner persona haciendo trekking"/>
+                    <img src="/public/imagenes/img-banner-2.jpg" alt="Imagen de banner persona haciendo trekking"/>
                 </div>
 
                 <div className="img-bunner-3"> 
-                    <img src="../../public/imagenes/img-banner-3.jpg" alt="Imagen de banner persona haciendo trekking"/>
+                    <img src="/public/imagenes/img-banner-3.jpg" alt="Imagen de banner persona haciendo trekking"/>
                 </div>
                 
                 <div className="img-bunner-4">
-                    <img src="../../public/imagenes/img-banner-4.jpg" alt="Imagen de banner persona haciendo trekking"/>
+                    <img src="/public/imagenes/img-banner-4.jpg" alt="Imagen de banner persona haciendo trekking"/>
                 </div>
             </div>
         </section>

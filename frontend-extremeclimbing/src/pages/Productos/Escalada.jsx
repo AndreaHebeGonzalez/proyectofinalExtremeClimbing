@@ -6,10 +6,14 @@ import './Productos.css';
 const Escalada = () => {
     const [productos, setProductos] = useState([]);
 
+    useEffect(()=> {
+        window.scrollTo(0, 0);
+    },[])
+
     useEffect(() => {
         const soliFetch = async () => {
             try {
-                const respuesta = await fetch('http://localhost:8000/productos/categoria/escalada');
+                const respuesta = await fetch('/api/productos/categoria/escalada');
                 if (!respuesta) {
                     console.log('Error al solicitar los productos');
                     return 

@@ -180,7 +180,7 @@ const ModificarProducto = () => {
 			formDataConArchivos.append('imagenes', archivos[i]);
 		};
 		try {
-			const respuesta = await fetch (`http://localhost:8000/productos/${id}`, {
+			const respuesta = await fetch (`/api/productos/${id}`, {
 				method: 'PUT',
 				body: formDataConArchivos
 			});

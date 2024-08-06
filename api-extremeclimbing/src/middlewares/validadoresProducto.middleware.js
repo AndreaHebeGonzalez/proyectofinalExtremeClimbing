@@ -1,8 +1,6 @@
 const { body, param } = require('express-validator');
 
 /* 
-Que validaciones tengo que hacer:
-
     validarId,
     validarNombre,
     validarPrecio,
@@ -12,7 +10,6 @@ Que validaciones tengo que hacer:
     validarStock,
     validarImg,
     validarErrores
-
 */
 
 const validarId = param('id')

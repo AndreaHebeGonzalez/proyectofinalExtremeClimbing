@@ -36,7 +36,6 @@ module.exports = (bd) => {
             allowNull: false,
             defaultValue: 'pendiente',
         }
-        // Otras columnas según sea necesario
     }, {
         timestamps: false,
         tableName: 'orden_de_compra',

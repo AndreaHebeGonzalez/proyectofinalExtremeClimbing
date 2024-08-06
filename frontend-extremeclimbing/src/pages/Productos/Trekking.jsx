@@ -5,10 +5,15 @@ import './Productos.css';
 
 const Trekking = () => {
     const [productos, setProductos] = useState([]);
+
+    useEffect(()=> {
+        window.scrollTo(0, 0);
+    },[])
+
     useEffect(() => {
         const soliFetch = async () => {
             try {
-                const respuesta = await fetch('http://localhost:8000/productos/categoria/montañismo');
+                const respuesta = await fetch('/api/productos/categoria/montañismo');
                 if (!respuesta) {
                     console.log('Error al solicitar los productos');
                     return 

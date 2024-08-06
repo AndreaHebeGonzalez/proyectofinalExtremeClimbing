@@ -21,11 +21,14 @@ const DetalleProducto = () => {
 
 	const { id } = useParams();
     
+	useEffect(()=> {
+        window.scrollTo(0, 0);
+    },[])
 	
 	useEffect(() => {
         const reqFetch = async () => {
             try {
-                const respuesta = await fetch(`http://localhost:8000/productos/${id}`);
+                const respuesta = await fetch(`/api/productos/${id}`);
                 if (!respuesta) {
                     console.log('Error al solicitar producto');
                     return 
@@ -103,7 +106,7 @@ const DetalleProducto = () => {
 							</div>   
 						</div>
 						<div className="valoracion">
-							<img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="../../public/imagenes/iconos/estrella-vacia.png" alt="estrella vacía"/>
+							<img className="iconos-respons" src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="/public/imagenes/iconos/estrella-llena.png" alt="estrella llena"/><img className="iconos-respons" src="/public/imagenes/iconos/estrella-vacia.png" alt="estrella vacía"/>
 						</div>
 					</div>
 					
@@ -119,7 +122,7 @@ const DetalleProducto = () => {
 							handleClickCaracteristicas();
 						}}>
 							<span>Caracteristicas</span>
-							<img className={`iconos-respons ${mostrarCaracteristicas ? 'rotar-icono-desplegar':''}`} src="../../public/imagenes/iconos/desplegable.png" alt="Desplegar"/>
+							<img className={`iconos-respons ${mostrarCaracteristicas ? 'rotar-icono-desplegar':''}`} src="/public/imagenes/iconos/desplegable.png" alt="Desplegar"/>
 						</div>
 						<div className= {`cont-list-caracteristicas ${mostrarCaracteristicas ? 'mostar-caracteristicas':''}`} >
 
@@ -138,7 +141,7 @@ const DetalleProducto = () => {
 							handleClickInfoTecnica();
 						}}>
 							<span>Información técnica</span>
-							<img className={`iconos-respons ${mostrarInfoTecnica ? 'rotar-icono-desplegar':''}`} src="../../public/imagenes/iconos/desplegable.png" alt="Desplegar"/>
+							<img className={`iconos-respons ${mostrarInfoTecnica ? 'rotar-icono-desplegar':''}`} src="/public/imagenes/iconos/desplegable.png" alt="Desplegar"/>
 						</div>
 						<div className={`cont-list-caracteristicas ${mostrarInfoTecnica ? 'mostar-caracteristicas':''}`}>
 

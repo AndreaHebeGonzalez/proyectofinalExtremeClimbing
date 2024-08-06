@@ -25,31 +25,21 @@ import Trekking from './pages/Productos/Trekking'
 import Camping from './pages/Productos/Camping'
 
 
-
-
 const App = () => {
 	const login = useAuth((state) => state.login);
 	const actualizarCarrito = useCarrito((state) => state.actualizarCarrito);
 	
-	
-
     useEffect( () => {
-		let datosSesion = localStorage.getItem('userData');
-        if(datosSesion) {
-            datosSesion = JSON.parse(datosSesion);
-            login(datosSesion)
-		};
-			/* try {
-				const respuesta = await fetch("http://localhost:8000/usuarios/perfil", {
-					
-				});
+		const soliFetch = async () => {
+			try {
+				const respuesta = await fetch("/api/usuarios/perfil");
 				if(respuesta.ok) {
 					const datosRespuesta = await respuesta.json();
 					const userData = datosRespuesta.dataUsuario;
 					localStorage.setItem('userData', JSON.stringify(userData));
 					login(userData);
 				} else {
-					if(respuesta.status == 401) {
+					if(respuesta.status === 401) {
 						console.log('Se llego hasta aca y no se guardo la sesion')
 						logout();
 						localStorage.removeItem('userData');
@@ -57,7 +47,9 @@ const App = () => {
 				};
 			} catch (error) {
 				console.error('No pudo realizarse la solicitud al servidor', error);
-			}; */
+			};
+		}
+		soliFetch();		
 		let carritoActualLS = localStorage.getItem('carrito');
 		if(carritoActualLS) {
 			carritoActualLS = JSON.parse(carritoActualLS);

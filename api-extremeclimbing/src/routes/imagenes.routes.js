@@ -4,14 +4,6 @@ const imagenesRouter = Router();
 
 const imagenesController = require('../controllers/imagenes.controller');
 
-/*
-
-    agregar,
-    borrarPorIdImagen,
-
-*/
-
-//Importo el middleware validador de errores:
 const { validarErrores } = require('../middlewares/validadorerr.middleware');
 
 const { validarId } = require('../middlewares/validadoresProducto.middleware');

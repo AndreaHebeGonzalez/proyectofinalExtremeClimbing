@@ -1,12 +1,6 @@
-//Importo modelos a usar en este modulo:
 const { Usuarios } = require('../models/index');
 
-//Requiero bcrypt:
 const bcrypt = require('bcrypt');
-
-//Creo los controladores de rutas
-
-//Obtener todos los usuarios:
 
 const obtenerTodos = async (req, res) => { //!Funcionando
     try {
@@ -20,7 +14,8 @@ const obtenerTodos = async (req, res) => { //!Funcionando
 };
 
 const buscarPorId = async (req, res) => {
-    const idUsuario = Number(req.params.id);
+    const idUsuario = req.session.idUsuario;
+    
     try {
         const dataUsuario = await Usuarios.findByPk(idUsuario);
         if (dataUsuario) {
@@ -60,7 +55,7 @@ const signUp = async (req, res) => { //!Funcionando
             req.session.email = nuevoUsuario.email
             req.session.rol = nuevoUsuario.rol;
         return res.status(201).json('Usuario logueado');
-        //201 se utiliza para indicar que una solicitud ha sido exitosa y ha llevado a la creación de un nuevo recurso en el servidor. 
+        
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({ error: 'El correo electrónico ya está registrado' });
@@ -97,7 +92,7 @@ const signIn = async (req, res) => { //!Funcionando
             rol: usuario.rol,
         };
 
-        if(!req.session.idUsuario) { //!NO PUEDO USAR ESTA INFO EN LAS SIGUIENTES SOLICITUDES PARA VERIFICACIONES, LA COOKIE DE SESION NO SE ENVIA DESDE EL SERVIDOR PARECE NO ALMACENARSE EN EL NAVEGADOR
+        if(!req.session.idUsuario) { 
             req.session.idUsuario = usuario.idUsuario;
             req.session.nombre = usuario.nombre,
             req.session.apellido = usuario.apellido,
@@ -228,7 +223,7 @@ const borrarUsuario = async (req, res) => { //!Funcionando
     };
 };
 
-const verificarSesion = async (req, res) => { //!PROBLEMAS PARA ALMACENAR LA COOKIE EN EL NAVEGADOR, NO SE ALMACENA ???
+const verificarSesion = async (req, res) => { 
     if (req.session.idUsuario) {
         const dataUsuario = {
             nombre: req.session.nombre,

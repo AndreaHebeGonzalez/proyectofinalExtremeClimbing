@@ -18,6 +18,10 @@ const ProcesarCompra = () => {
 
     const [conEnvio, setConEnvio] = useState(false);
 
+    useEffect(()=> {
+        window.scrollTo(0, 0);
+    },[])
+    
     useEffect(() => {
         let userData = localStorage.getItem('userData');
         if (userData) {
@@ -77,7 +81,7 @@ const ProcesarCompra = () => {
             };
             console.log(dataOrden);
             try {
-                const respuesta = await fetch("http://localhost:8000/ordenes-de-compras", {
+                const respuesta = await fetch("/api/ordenes-de-compras", {
                     method: 'POST',
                     credentials: 'include',
                     headers: {

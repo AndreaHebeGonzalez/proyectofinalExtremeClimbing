@@ -4,7 +4,7 @@ const { path } = require('path');
 
 //Controlador para agregar imagenes a un producto ya existente:
 //SUbir archivos por separado para este producto
-const agregar = async (req, res) => { //Se debe enviar desde el front al back un objeto con producto_id categoria, subcategoriaUno, subcategoriaDos, subcategoriaTres si tiene el producto y un array de urlsImagenes
+const agregar = async (req, res) => { //Se debe enviar un objeto con producto_id categoria, subcategoriaUno, subcategoriaDos, subcategoriaTres si tiene el producto y un array de urlsImagenes
     const { productoId } = req.body;
     try {
         const urlsImagenes = req.files.map(file => file.path);

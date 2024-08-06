@@ -3,7 +3,6 @@
 
 const { DataTypes } = require('sequelize');
 
-//Definicion del modelo producto 
 
 module.exports = (bd) => {
     //Creo el modelo de productos
@@ -74,7 +73,7 @@ module.exports = (bd) => {
             allowNull: true,
         }      
     }, {
-        tableName: 'productos', // Especifica el nombre exacto de la tabla en la base de datos
+        tableName: 'productos',
     });
     return Productos;
 };

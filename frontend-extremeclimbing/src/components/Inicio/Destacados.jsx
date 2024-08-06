@@ -10,7 +10,7 @@ const Destacados = () => {
     useEffect(() => {
         const soliFetch = async () => {
             try {
-                const respuesta = await fetch('http://localhost:8000/productos/aleatorio/camping');
+                const respuesta = await fetch('/api/productos/aleatorio/camping');
                 if (!respuesta) {
                     console.log('Error al solicitar los productos', res.status);
                     return 

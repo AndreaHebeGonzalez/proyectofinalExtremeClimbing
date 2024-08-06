@@ -4,26 +4,30 @@ import CardProductos from '../../components/Productos/CardProductos';
 import './Productos.css';
 
 const Camping = () => {
-  const [productos, setProductos] = useState([]);
+    const [productos, setProductos] = useState([]);
 
-  useEffect(() => {
-    const soliFetch = async () => {
-        try {
-            const respuesta = await fetch('http://localhost:8000/productos/categoria/camping');
-            if (!respuesta) {
-                console.log('Error al solicitar los productos');
-                return 
-            };
-            const data = await respuesta.json();
-            console.log(data)
-            setProductos(data);
-            
-        } catch (error) {
-            console.error('Error al solicitar los productos', error);
+    useEffect(()=> {
+        window.scrollTo(0, 0);
+    },[])
+
+    useEffect(() => {
+        const soliFetch = async () => {
+            try {
+                const respuesta = await fetch('/api/productos/categoria/camping');
+                if (!respuesta) {
+                    console.log('Error al solicitar los productos');
+                    return 
+                };
+                const data = await respuesta.json();
+                console.log(data)
+                setProductos(data);
+                
+            } catch (error) {
+                console.error('Error al solicitar los productos', error);
+            }
         }
-    }
-    soliFetch();
-}, []);
+        soliFetch();
+    }, []);
     return (
         <section className='contenedor-admin' style={{ margin: '7vw 3vw'}}>
             <div className="titulo">

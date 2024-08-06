@@ -55,7 +55,7 @@ const FormLogin = ({ email, contraseña, handleEmail, handleContraseña, handleS
                                         ...cambiado,
                                         contraseña: true
                                     })}}/>
-                                <img className='iconos-btn' src={verContraseña ? "../../public/imagenes/iconos/ocultar.png" :"../../public/imagenes/iconos/ver.png"} alt={verContraseña ? "Icono ocultar contraseña" :"Icono ver contraseña"} onClick={verContraseñaToggle}/>
+                                <img className='iconos-btn' src={verContraseña ? "/public/imagenes/iconos/ocultar.png" :"/public/imagenes/iconos/ver.png"} alt={verContraseña ? "Icono ocultar contraseña" :"Icono ver contraseña"} onClick={verContraseñaToggle}/>
                             </div>
                         {cambiado.contraseña === true && contraseña === '' && <small>Este campo es obligatorio</small>}
                         </div>
@@ -67,12 +67,12 @@ const FormLogin = ({ email, contraseña, handleEmail, handleContraseña, handleS
                         e.preventDefault();
                         handleSubmit();
                     }} disabled = {email===''|| contraseña===''}>
-                            <img className="iconos-btn" src="../../public/imagenes/iconos/114-user.png" alt="Icono para boton de iniciar sesión"/>
+                            <img className="iconos-btn" src="/public/imagenes/iconos/114-user.png" alt="Icono para boton de iniciar sesión"/>
                             Iniciar sesion
                         </button>
                         <Link to="/registro">
                             <button className= "boton-contenedor" id="crear-cuenta" formNoValidate>
-                            <img className="iconos-btn" src="../../public/imagenes/iconos/116-user-plus.png" alt="Icono para boton de registrarse"/>
+                            <img className="iconos-btn" src="/public/imagenes/iconos/116-user-plus.png" alt="Icono para boton de registrarse"/>
                             Crear cuenta
                             </button>
                         </Link>

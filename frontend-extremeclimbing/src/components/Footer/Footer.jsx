@@ -1,6 +1,7 @@
 import React from 'react'
 import './Footer.css'
 import Btn3 from '../Botones/Btn3'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -9,7 +10,7 @@ const Footer = () => {
                 
             <div className="primer-col">
                 <div className="logo-footer">
-                    <img src="../../public/imagenes/logo2.png" alt="Logo de Extreme Climbing"/>
+                    <img src="/public/imagenes/logo2.png" alt="Logo de Extreme Climbing"/>
                 </div>
                 <div className="redes-sociales">
                     <svg className="red-social" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="25px">
@@ -30,15 +31,15 @@ const Footer = () => {
             <div className="segunda-col">
                 <div className="categorias">
                     <h4>Categorías</h4>
-                    <a href="#"><p>Escalada</p></a>
-                    <a href="#"><p>Camping</p></a>
-                    <a href="#"><p>Trekking</p></a>
+                    <Link to="/productos-escalada"><p>Escalada</p></Link>
+                    <Link to="/productos-camping"><p>Camping</p></Link>
+                    <Link to="/productos-trekking"><p>Trekking</p></Link>
                 </div>
                 
                 <div className="menu-footer">
-                    <a href="index.html">Inicio</a>
-                    <a href="#">Empresa</a>
-                    <a href="#">Contacto</a> 
+                    <Link to="/">Inicio</Link>
+                    <Link to="#">Empresa</Link>
+                    <Link to="/contacto">Contacto</Link> 
                 </div>
             </div>
             
@@ -75,7 +76,7 @@ const Footer = () => {
                     <div className= "datos-contacto">
                         <h4>Datos de contacto</h4>
                         <div className="direccion">
-                            <img className="iconos-respons" src="../../public/imagenes/iconos/direccion.png" alt="icono localizacion"/>
+                            <img className="iconos-respons" src="/public/imagenes/iconos/direccion.png" alt="icono localizacion"/>
                             <div>
                                 <p>Santiago 781, Rosario, Santa Fe</p>
                                 <p>Edison 397, Villa Carlos Paz, Córdoba</p>
@@ -83,7 +84,7 @@ const Footer = () => {
                             
                         </div>
                         <div className="telefonos">
-                            <img className="iconos-respons" src="../../public/imagenes/iconos/telefonos.png" alt="icono teléfono"/>
+                            <img className="iconos-respons" src="/public/imagenes/iconos/telefonos.png" alt="icono teléfono"/>
                             <div>
                                 <p>Lu-Vi de 9:30 a 19hs / Sá de 10:30 a 17hs</p>
                                 <p><span>+54 (3514) 25 7451</span></p>
@@ -91,7 +92,7 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className="mail">
-                            <img className="iconos-respons" src="../../public/imagenes/iconos/mail.png" alt="icono sobre de correo"/>
+                            <img className="iconos-respons" src="/public/imagenes/iconos/mail.png" alt="icono sobre de correo"/>
                             <p>info@extremeclimbing.com.ar</p>
                         </div>
                     </div>

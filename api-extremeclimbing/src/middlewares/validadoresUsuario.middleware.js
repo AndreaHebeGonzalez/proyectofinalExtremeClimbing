@@ -1,13 +1,5 @@
 const { body } = require('express-validator');
 
-/* 
-validadores:
-validador de nombre y apellido
-
-validador de nacimiento
-validador de contraseña
-*/
-
 const validarNombre = body('nombre')
     .notEmpty()
     .withMessage('El nombre es obligatorio') 
@@ -28,14 +20,9 @@ const validarApellido = body('apellido')
     })
     .withMessage('El apellido tiene que tener al menos 3 caracteres');
 
-//en un elemento <input> con type="date" en HTML, el valor del input se devuelve como una cadena en formato ISO 8601 cuando el usuario selecciona una fecha. La cadena se formatea en el siguiente formato: "YYYY-MM-DD".
-//Se utilizará express-validator y la libreria Luxon para convertir la fecha en formato de texto ISO 8601 a un objeto de tipo DateTime de luxon.
-
 
 const validarFormatoNacimiento = body('nacimiento')
-//Desde el frontend la fecha de nacimiento se envía en formato ISO8601, 
 
-//en un elemento <input> con type="date" en HTML, el valor del input se devuelve como una cadena en formato ISO 8601 cuando el usuario selecciona una fecha. La cadena se formatea en el siguiente formato: "YYYY-MM-DD".
 .notEmpty()
 .withMessage('La fecha de nacimiento es obligatoria')
 .isISO8601()
@@ -53,7 +40,6 @@ const validarEdad = body('nacimiento') //!ESTE VALIDADOR GENERA ERROR DE 422 Unp
             if (edad > 18) {
                 return true
             } else {
-                //Capturo la excepción y genero un objeto Error para que detenga la ejecucion del codigo
                 throw new Error('La persona debe ser mayor de 18 años');
             }; 
         } catch (error) {
@@ -77,13 +63,7 @@ const validarEdad = body('nacimiento') //!ESTE VALIDADOR GENERA ERROR DE 422 Unp
         .matches(/[a-z]/).withMessage('La contraseña debe contener al menos una letra minúscula')
         .matches(/[A-Z]/).withMessage('La contraseña debe contener al menos una letra mayuscula')
         .matches(/[0-9]/).withMessage('La contraseña debe contener al menos 1 digito del 0 al 9')
-        /*
-        matches
-        Es un método de express-validator que se utiliza para aplicar validaciones basadas en expresiones regulares. Nuevamente, lamento la confusión y agradezco tu paciencia.
-        */
 
-    
-    //Centralizo validacion de autenticacion
     const validarAutenticacion = (req, res, next) => {
         if(req.session.idUsuario) {
             next()

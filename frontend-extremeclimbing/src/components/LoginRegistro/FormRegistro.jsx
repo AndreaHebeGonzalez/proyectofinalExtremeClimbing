@@ -202,7 +202,7 @@ const Registro = ({ nombre, apellido, nacimiento, email, contraseña, repitaCont
                         e.preventDefault();
                         handleSubmit();
                     }} disabled = {nombre==='' || apellido==='' || nacimiento===''  || email===''|| contraseña==='' || !contraseñasCoinciden}>
-                        <img className="iconos-btn" src="../../public/imagenes/iconos/registro.png" alt="icono de registrarse"/>
+                        <img className="iconos-btn" src="/public/imagenes/iconos/registro.png" alt="icono de registrarse"/>
                         Registrarse
                     </button>
 

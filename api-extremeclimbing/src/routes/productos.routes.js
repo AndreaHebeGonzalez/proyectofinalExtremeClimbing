@@ -1,27 +1,14 @@
 
-
-//Se importa el objeto Router desde express para crear instancias de rutas.
 const { Router } = require('express');
 
-//Creación de la Instancia del Enrutador
 const productosRouter = Router();
 
-//Se deben importar los controladores para asociarlos a las rutas correspondientes
 const productosController = require('../controllers/productos.controller');
 
-/*
-    buscarTodos,
-    agregar,
-    buscarPorId,
-    actualizar,
-    borrar,
-    
-*/
 
-//Importo el middleware validador de errores:
 const { validarErrores } = require('../middlewares/validadorerr.middleware');
 
-//Importo funciones de validación creadas en carpeta middlewares
+
 const { 
     validarId,
     validarNombre,
@@ -42,11 +29,7 @@ const {
 
 const { validarAdmin  } = require('../middlewares/validarAdmin.middleware');
 
-//Creo los endpoint para el manejo de solicitudes HTTP:
-
-
 productosRouter.get("/", productosController.buscarTodos);
-
 
 productosRouter.post(
     "/", 
@@ -97,4 +80,4 @@ productosRouter.delete(
     productosController.borrarProducto
 );
 
-module.exports = productosRouter; //Se importa en el entrypoint
+module.exports = productosRouter;
